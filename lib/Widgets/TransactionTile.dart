@@ -38,54 +38,56 @@ class TransactionTile extends StatelessWidget {
             ),
           ],
         ),
-        child: ListTile(
-          leading: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8),
-              color: const Color.fromARGB(60, 147, 22, 22),
-            ),
-            child: Icon(
-              transactionIcon,
-              color: const Color.fromARGB(255, 14, 10, 218),
-              size: 50,
-            ),
-          ),
-          title: Text(
-            transactionCathegory,
-            style: const TextStyle(
-              fontSize: 22,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          subtitle: Text(
-            transactionDescriptions,
-            style: const TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w600,
-              color: Color.fromARGB(255, 138, 135, 135),
-            ),
-          ),
-          trailing: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                '- $transactionAmount BYN',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.red,
-                ),
+        child: Center(
+          child: ListTile(
+            leading: Container(
+              decoration: BoxDecoration(
+                color: Color.fromARGB(155, 4, 234, 247),
+                borderRadius: BorderRadius.circular(8),
               ),
-              const Padding(padding: EdgeInsets.only(top: 5)),
-              Text(
-                '$date',
-                style: const TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.black,
-                ),
+              child: Icon(
+                transactionIcon,
+                color: const Color.fromARGB(255, 14, 10, 218),
+                size: 50,
               ),
-            ],
+            ),
+            title: Text(
+              transactionCathegory,
+              style: const TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            subtitle: Text(
+              transactionDescriptions,
+              style: const TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w600,
+                color: Color.fromARGB(255, 138, 135, 135),
+              ),
+            ),
+            trailing: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  '- $transactionAmount BYN',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.red,
+                  ),
+                ),
+                const Padding(padding: EdgeInsets.only(top: 5)),
+                Text(
+                  '$date',
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

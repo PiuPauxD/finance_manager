@@ -30,33 +30,30 @@ class _HomeScreenState extends State<HomeScreen> {
               totalBalance: 350.00,
             ),
           ),
-          Expanded(
-            flex: 1,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text(
-                    'История транзакций',
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text(
+                  'История транзакций',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {},
+                  child: const Text(
+                    'Показать все',
                     style: TextStyle(
-                      fontSize: 20,
+                      color: Color.fromARGB(255, 14, 10, 218),
                       fontWeight: FontWeight.bold,
+                      fontSize: 18,
                     ),
                   ),
-                  GestureDetector(
-                    onTap: () {},
-                    child: const Text(
-                      'Показать все',
-                      style: TextStyle(
-                        color: Color.fromARGB(255, 14, 10, 218),
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
           Expanded(
@@ -68,21 +65,21 @@ class _HomeScreenState extends State<HomeScreen> {
                     transactionIcon: Icons.piano_outlined,
                     transactionCathegory: 'Хобби',
                     transactionDescriptions: 'Лампа',
+                    transactionAmount: 25.1,
+                    date: '${_date.day}.${_date.month}',
+                  ),
+                  TransactionTile(
+                    transactionIcon: Icons.emoji_transportation_outlined,
+                    transactionCathegory: 'Транспорт',
+                    transactionDescriptions: 'Троллейбус',
                     transactionAmount: 8.5,
                     date: '${_date.day}.${_date.month}',
                   ),
                   TransactionTile(
-                    transactionIcon: Icons.piano_outlined,
-                    transactionCathegory: 'Хобби',
-                    transactionDescriptions: 'Лампа',
-                    transactionAmount: 8.5,
-                    date: '${_date.day}.${_date.month}',
-                  ),
-                  TransactionTile(
-                    transactionIcon: Icons.piano_outlined,
-                    transactionCathegory: 'Хобби',
-                    transactionDescriptions: 'Лампа',
-                    transactionAmount: 8.5,
+                    transactionIcon: Icons.shopping_bag_outlined,
+                    transactionCathegory: 'Покупки',
+                    transactionDescriptions: 'Продукты',
+                    transactionAmount: 30.78,
                     date: '${_date.day}.${_date.month}',
                   ),
                 ],
