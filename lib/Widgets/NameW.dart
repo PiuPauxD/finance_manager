@@ -20,7 +20,7 @@ class NameW extends StatelessWidget {
               borderRadius: BorderRadius.circular(16),
             ),
             child: Icon(
-              Icons.person_outlined,
+              Icons.person_outline_outlined,
               size: 50,
             ),
           ),
@@ -35,7 +35,7 @@ class NameW extends StatelessWidget {
                 Hello,
                 style: const TextStyle(
                   fontSize: 22,
-                  fontWeight: FontWeight.w700,
+                  fontWeight: FontWeight.w600,
                   color: Color.fromARGB(255, 122, 108, 108),
                 ),
               ),
@@ -46,7 +46,7 @@ class NameW extends StatelessWidget {
                 name,
                 style: const TextStyle(
                   fontSize: 22,
-                  fontWeight: FontWeight.w700,
+                  fontWeight: FontWeight.w600,
                   color: Colors.black,
                 ),
               ),

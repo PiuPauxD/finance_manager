@@ -6,7 +6,7 @@ void main() {
     MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Finance manager',
-      home: NavBar(),
+      home: Navbar(),
     ),
   );
 }

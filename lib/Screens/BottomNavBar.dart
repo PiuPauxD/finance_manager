@@ -1,18 +1,22 @@
+import 'package:circle_nav_bar/circle_nav_bar.dart';
 import 'package:finance_manager/Screens/AddScreen.dart';
 import 'package:finance_manager/Screens/HomeScreen.dart';
 import 'package:finance_manager/Screens/StatisticScreen.dart';
-
 import 'package:flutter/material.dart';
 
-class NavBar extends StatefulWidget {
-  const NavBar({super.key});
+class Navbar extends StatefulWidget {
+  const Navbar({super.key});
 
   @override
-  State<NavBar> createState() => _NavBarState();
+  State<Navbar> createState() => _NavbarState();
 }
 
-class _NavBarState extends State<NavBar> {
-  List Screen = [HomeScreen(), AddScreen(), StatisticScreen()];
+class _NavbarState extends State<Navbar> {
+  List screens = [
+    HomeScreen(),
+    AddScreen(),
+    StatisticScreen(),
+  ];
 
   int currentIndex = 0;
 
@@ -25,33 +29,46 @@ class _NavBarState extends State<NavBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Screen[currentIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        unselectedFontSize: 0,
-        selectedFontSize: 12,
-        type: BottomNavigationBarType.fixed,
-        backgroundColor: Color.fromARGB(255, 238, 229, 229),
-        onTap: onTap,
-        currentIndex: currentIndex,
-        selectedItemColor: Color.fromARGB(255, 9, 49, 230),
-        unselectedItemColor: Colors.grey,
-        showUnselectedLabels: false,
-        showSelectedLabels: true,
-        elevation: 0,
-        items: [
-          BottomNavigationBarItem(
-            label: 'Home',
-            icon: Icon(Icons.home, size: 30),
+      body: screens[currentIndex],
+      bottomNavigationBar: CircleNavBar(
+        activeIndex: currentIndex,
+        activeIcons: const [
+          Icon(
+            Icons.home_outlined,
+            color: Colors.white,
           ),
-          BottomNavigationBarItem(
-            label: 'Add',
-            icon: Icon(Icons.add, size: 30),
+          Icon(
+            Icons.add_outlined,
+            color: Colors.white,
           ),
-          BottomNavigationBarItem(
-            label: 'History',
-            icon: Icon(Icons.history, size: 30),
+          Icon(
+            Icons.pie_chart_outline,
+            color: Colors.white,
           ),
         ],
+        inactiveIcons: const [
+          Icon(
+            Icons.home_outlined,
+            color: Color.fromARGB(255, 14, 10, 218),
+          ),
+          Icon(
+            Icons.add_outlined,
+            color: Color.fromARGB(255, 14, 10, 218),
+          ),
+          Icon(
+            Icons.pie_chart_outline,
+            color: Color.fromARGB(255, 14, 10, 218),
+          ),
+        ],
+        height: 60,
+        circleWidth: 60,
+        color: Colors.white,
+        onTap: onTap,
+        padding: const EdgeInsets.only(top: 10),
+        shadowColor: const Color.fromARGB(250, 189, 184, 184),
+        circleShadowColor: const Color.fromARGB(250, 189, 184, 184),
+        elevation: 10,
+        circleColor: Color.fromARGB(255, 14, 10, 218),
       ),
     );
   }
