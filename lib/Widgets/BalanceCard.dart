@@ -1,12 +1,10 @@
 import 'package:finance_manager/Widgets/OperationW.dart';
+import 'package:finance_manager/data/usedData.dart';
 import 'package:flutter/material.dart';
 
 class BalanceCard extends StatelessWidget {
-  final double totalBalance;
-
   const BalanceCard({
     super.key,
-    required this.totalBalance,
   });
 
   @override
@@ -37,7 +35,7 @@ class BalanceCard extends StatelessWidget {
                 padding: EdgeInsets.symmetric(vertical: 20),
               ),
               Text(
-                'BYN $totalBalance',
+                'BYN ${userDate.totalBalance}',
                 style: const TextStyle(
                   color: Colors.white,
                   fontSize: 26,
@@ -47,8 +45,8 @@ class BalanceCard extends StatelessWidget {
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: 20),
               ),
-              const Center(
-                child: OperationW(inflow: 35.00, outflow: 15.00),
+              Center(
+                child: OperationW(),
               ),
             ],
           ),

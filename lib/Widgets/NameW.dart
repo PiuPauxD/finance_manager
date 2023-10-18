@@ -1,9 +1,9 @@
+import 'package:finance_manager/data/usedData.dart';
 import 'package:flutter/material.dart';
 
 class NameW extends StatelessWidget {
-  final name;
   final Hello;
-  const NameW({super.key, this.name, this.Hello});
+  const NameW({super.key, this.Hello});
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +43,7 @@ class NameW extends StatelessWidget {
                 padding: EdgeInsets.only(top: 2),
               ),
               Text(
-                name,
+                userDate.userName,
                 style: const TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.w600,

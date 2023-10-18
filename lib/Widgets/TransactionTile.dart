@@ -1,19 +1,14 @@
+import 'package:finance_manager/data/usedData.dart';
 import 'package:flutter/material.dart';
 
 class TransactionTile extends StatelessWidget {
-  final String transactionCathegory;
-  final String transactionDescriptions;
-  final double transactionAmount;
   final IconData transactionIcon;
-  final String date;
+  final Transaction transaction;
 
   const TransactionTile({
     super.key,
-    required this.transactionAmount,
-    required this.date,
-    required this.transactionCathegory,
-    required this.transactionDescriptions,
     required this.transactionIcon,
+    required this.transaction,
   });
 
   @override
@@ -45,21 +40,26 @@ class TransactionTile extends StatelessWidget {
                 color: Color.fromARGB(155, 4, 234, 247),
                 borderRadius: BorderRadius.circular(8),
               ),
-              child: Icon(
-                transactionIcon,
-                color: const Color.fromARGB(255, 14, 10, 218),
-                size: 50,
-              ),
+              child: transaction.categoryType == ItemCategoryType.Hobbies
+                  ? Icon(
+                      transactionIcon,
+                      color: const Color.fromARGB(255, 14, 10, 218),
+                      size: 50,
+                    )
+                  : Icon(
+                      Icons.house_outlined,
+                      size: 50,
+                    ),
             ),
             title: Text(
-              transactionCathegory,
+              transaction.itemCategoryName,
               style: const TextStyle(
                 fontSize: 22,
                 fontWeight: FontWeight.bold,
               ),
             ),
             subtitle: Text(
-              transactionDescriptions,
+              transaction.itemName,
               style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w600,
@@ -70,16 +70,19 @@ class TransactionTile extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  '- $transactionAmount BYN',
+                  transaction.amount,
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w600,
-                    color: Colors.red,
+                    color:
+                        transaction.transactionType == TransactionType.outflow
+                            ? Colors.red
+                            : Colors.black,
                   ),
                 ),
                 const Padding(padding: EdgeInsets.only(top: 5)),
                 Text(
-                  '$date',
+                  transaction.date,
                   style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w600,

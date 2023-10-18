@@ -1,9 +1,10 @@
+import 'package:finance_manager/data/usedData.dart';
 import 'package:flutter/material.dart';
 
 class OperationW extends StatelessWidget {
-  final double inflow;
-  final double outflow;
-  const OperationW({super.key, required this.inflow, required this.outflow});
+  const OperationW({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +44,7 @@ class OperationW extends StatelessWidget {
                   padding: EdgeInsets.only(top: 5),
                 ),
                 Text(
-                  '$inflow',
+                  '${userDate.inflow}',
                   style: const TextStyle(
                     color: Colors.white,
                     fontSize: 22,
@@ -75,7 +76,7 @@ class OperationW extends StatelessWidget {
                   padding: EdgeInsets.only(top: 5),
                 ),
                 Text(
-                  '$outflow',
+                  '${userDate.outflow}',
                   style: const TextStyle(
                     color: Colors.white,
                     fontSize: 22,

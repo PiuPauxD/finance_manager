@@ -5,7 +5,7 @@ void main() {
   runApp(
     MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Finance manager',
+      title: 'My Finance',
       home: Navbar(),
     ),
   );

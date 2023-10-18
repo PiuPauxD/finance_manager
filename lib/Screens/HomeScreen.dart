@@ -1,6 +1,7 @@
 import 'package:finance_manager/Widgets/BalanceCard.dart';
 import 'package:finance_manager/Widgets/NameW.dart';
 import 'package:finance_manager/Widgets/TransactionTile.dart';
+import 'package:finance_manager/data/usedData.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -17,18 +18,19 @@ class _HomeScreenState extends State<HomeScreen> {
     return SafeArea(
       child: Column(
         children: [
-          const Expanded(
+          Expanded(
             flex: 1,
-            child: NameW(
-              Hello: 'Добро пожаловать',
-              name: 'PiuPau',
+            child: Column(
+              children: [
+                NameW(
+                  Hello: 'Добро пожаловать',
+                ),
+              ],
             ),
           ),
           const Expanded(
             flex: 3,
-            child: BalanceCard(
-              totalBalance: 350.00,
-            ),
+            child: BalanceCard(),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
@@ -61,26 +63,16 @@ class _HomeScreenState extends State<HomeScreen> {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  TransactionTile(
-                    transactionIcon: Icons.piano_outlined,
-                    transactionCathegory: 'Хобби',
-                    transactionDescriptions: 'Лампа',
-                    transactionAmount: 25.1,
-                    date: '${_date.day}.${_date.month}',
-                  ),
-                  TransactionTile(
-                    transactionIcon: Icons.emoji_transportation_outlined,
-                    transactionCathegory: 'Транспорт',
-                    transactionDescriptions: 'Троллейбус',
-                    transactionAmount: 8.5,
-                    date: '${_date.day}.${_date.month}',
-                  ),
-                  TransactionTile(
-                    transactionIcon: Icons.shopping_bag_outlined,
-                    transactionCathegory: 'Покупки',
-                    transactionDescriptions: 'Продукты',
-                    transactionAmount: 30.78,
-                    date: '${_date.day}.${_date.month}',
+                  ...userDate.transaction.map((transaction) => TransactionTile(
+                      transactionIcon: Icons.abc_outlined,
+                      transaction: transaction)),
+                  ...userDate.transaction.map((transaction1) => TransactionTile(
+                      transactionIcon: Icons.abc_outlined,
+                      transaction: transaction1)),
+                  ...userDate.transaction.map(
+                    (transaction2) => TransactionTile(
+                        transactionIcon: Icons.abc_outlined,
+                        transaction: transaction2),
                   ),
                 ],
               ),
