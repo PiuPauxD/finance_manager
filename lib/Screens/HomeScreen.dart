@@ -12,7 +12,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final DateTime _date = DateTime.now();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -22,9 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
             flex: 1,
             child: Column(
               children: [
-                NameW(
-                  Hello: 'Добро пожаловать',
-                ),
+                NameW(),
               ],
             ),
           ),

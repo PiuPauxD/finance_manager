@@ -2,8 +2,19 @@ import 'package:finance_manager/data/usedData.dart';
 import 'package:flutter/material.dart';
 
 class NameW extends StatelessWidget {
-  final Hello;
-  const NameW({super.key, this.Hello});
+  String _greeting() {
+    final hour = TimeOfDay.now().hour;
+    if (hour < 6) {
+      return 'Доброй ночи';
+    } else if (hour < 12) {
+      return 'Доброе Утро';
+    } else if (hour < 18) {
+      return 'Добрый день';
+    }
+    return 'Добрый вечер';
+  }
+
+  const NameW({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +43,7 @@ class NameW extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                Hello,
+                _greeting(),
                 style: const TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.w600,
