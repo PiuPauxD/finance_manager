@@ -46,21 +46,21 @@ List<Transaction> transactions = [
 ];
 List<Transaction> transactions1 = [
   Transaction(
-    ItemCategoryType.Transport,
+    ItemCategoryType.Hobbies,
     TransactionType.inflow,
-    'Транспорт',
-    'траллейбус',
-    '8.5',
+    'Хобби',
+    'Наушники',
+    '55.90',
     '18 Окт.',
   )
 ];
 List<Transaction> transactions2 = [
   Transaction(
-    ItemCategoryType.Hobbies,
+    ItemCategoryType.Medicine,
     TransactionType.outflow,
-    'Хобби',
-    'Стилус',
-    '150.0',
+    'Медицина',
+    'Лекарства',
+    '52.0',
     '18 Окт.',
   )
 ];

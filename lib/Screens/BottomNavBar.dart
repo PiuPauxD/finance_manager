@@ -56,7 +56,7 @@ class _NavbarState extends State<Navbar> {
             color: Color.fromARGB(255, 14, 10, 218),
           ),
           Icon(
-            Icons.pie_chart_outline,
+            Icons.data_usage_outlined,
             color: Color.fromARGB(255, 14, 10, 218),
           ),
         ],

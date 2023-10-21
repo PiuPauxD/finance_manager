@@ -27,8 +27,7 @@ class BalanceCard extends StatelessWidget {
                 'Общий баланс',
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
+                  fontSize: 26,
                 ),
               ),
               const Padding(

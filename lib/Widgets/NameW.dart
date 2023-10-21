@@ -4,14 +4,15 @@ import 'package:flutter/material.dart';
 class NameW extends StatelessWidget {
   String _greeting() {
     final hour = TimeOfDay.now().hour;
-    if (hour < 6) {
+    if (hour < 12) {
+      return 'Доброе Утро,';
+    } else if (hour < 17) {
+      return 'Добрый день,';
+    } else if (hour < 21) {
+      return 'Добрый вечер';
+    } else {
       return 'Доброй ночи';
-    } else if (hour < 12) {
-      return 'Доброе Утро';
-    } else if (hour < 18) {
-      return 'Добрый день';
     }
-    return 'Добрый вечер';
   }
 
   const NameW({super.key});
@@ -19,7 +20,7 @@ class NameW extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
@@ -32,11 +33,8 @@ class NameW extends StatelessWidget {
             ),
             child: Icon(
               Icons.person_outline_outlined,
-              size: 50,
+              size: 38,
             ),
-          ),
-          const Padding(
-            padding: EdgeInsets.only(left: 10),
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -46,7 +44,7 @@ class NameW extends StatelessWidget {
                 _greeting(),
                 style: const TextStyle(
                   fontSize: 22,
-                  fontWeight: FontWeight.w600,
+                  fontWeight: FontWeight.w400,
                   color: Color.fromARGB(255, 122, 108, 108),
                 ),
               ),
@@ -57,7 +55,7 @@ class NameW extends StatelessWidget {
                 userDate.userName,
                 style: const TextStyle(
                   fontSize: 22,
-                  fontWeight: FontWeight.w600,
+                  fontWeight: FontWeight.w500,
                   color: Colors.black,
                 ),
               ),
@@ -69,8 +67,8 @@ class NameW extends StatelessWidget {
           GestureDetector(
             onTap: () {},
             child: Icon(
-              Icons.settings_outlined,
-              size: 42,
+              Icons.more_vert_outlined,
+              size: 38,
             ),
           ),
         ],
