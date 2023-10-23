@@ -4,14 +4,16 @@ import 'package:flutter/material.dart';
 class NameW extends StatelessWidget {
   String _greeting() {
     final hour = TimeOfDay.now().hour;
-    if (hour < 12) {
+    if (hour < 6) {
+      return 'Доброй Ночи';
+    } else if (hour < 12) {
       return 'Доброе Утро,';
     } else if (hour < 17) {
-      return 'Добрый день,';
+      return 'Добрый День,';
     } else if (hour < 21) {
-      return 'Добрый вечер';
+      return 'Добрый Вечер';
     } else {
-      return 'Доброй ночи';
+      return 'Доброй Ночи';
     }
   }
 

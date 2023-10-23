@@ -11,14 +11,9 @@ class AddScreen extends StatefulWidget {
 }
 
 class _AddScreenState extends State<AddScreen> {
-  List<String> categoryName = ['Доходы', 'Расходы'];
-  var categoryIndex = 0;
+  var categoryName = 'Доходы';
 
-  void categoryTapped(index) {
-    setState(() {
-      categoryIndex = index;
-    });
-  }
+  String input = '0';
 
   @override
   Widget build(BuildContext context) {
@@ -41,22 +36,28 @@ class _AddScreenState extends State<AddScreen> {
                         size: 40,
                       ),
                     ),
-                    GestureDetector(
-                      onTap: () {},
-                      child: Row(
-                        children: [
-                          Text(
-                            categoryName[categoryIndex],
-                            style: const TextStyle(
-                              color: Colors.black,
-                              fontSize: 22,
-                              fontWeight: FontWeight.w600,
-                            ),
+                    Row(
+                      children: [
+                        Text(
+                          categoryName,
+                          style: const TextStyle(
+                            color: Colors.black,
+                            fontSize: 22,
+                            fontWeight: FontWeight.w600,
                           ),
-                          const Icon(Icons.sync_outlined,
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              categoryName = categoryName == 'Расходы'
+                                  ? 'Доходы'
+                                  : 'Расходы';
+                            });
+                          },
+                          child: Icon(Icons.sync_outlined,
                               color: Colors.green, size: 40),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                     GestureDetector(
                       child: Container(
@@ -100,16 +101,16 @@ class _AddScreenState extends State<AddScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Row(
+                    const Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        const Icon(
+                        Icon(
                           Icons.home_mini_outlined,
                           size: 30,
                           color: Colors.white,
                         ),
-                        const Padding(padding: EdgeInsets.only(left: 5)),
-                        const Text(
+                        Padding(padding: EdgeInsets.only(left: 5)),
+                        Text(
                           'Сумма',
                           style: TextStyle(
                             color: Colors.grey,
@@ -119,23 +120,47 @@ class _AddScreenState extends State<AddScreen> {
                         ),
                       ],
                     ),
-                    Text('0',
-                        style: TextStyle(
-                          fontSize: 32,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ))
+                    Text(
+                      '${NumPadInput(input)}',
+                      style: const TextStyle(
+                        fontSize: 32,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
                   ],
                 ),
               ),
             ),
           ),
-          const Expanded(
+          Expanded(
             flex: 4,
-            child: NumPad(),
+            child: GestureDetector(
+                onTap: () {
+                  setState(() {
+                    NumPadInput(input);
+                  });
+                },
+                child: NumPad()),
           ),
         ],
       ),
     );
+  }
+
+  NumPadInput(String text) {
+    if (input == "⌫") {
+      if (input.isNotEmpty) {
+        input = input.substring(0, input.length - 1);
+        return;
+      } else {
+        return null;
+      }
+    }
+    if (input.endsWith(".0")) {
+      input = input.replaceAll(".0", "");
+      return;
+    }
+    input = input + text;
   }
 }

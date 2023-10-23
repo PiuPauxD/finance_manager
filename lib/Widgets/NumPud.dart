@@ -32,33 +32,16 @@ class _NumPadState extends State<NumPad> {
       ),
       physics: const NeverScrollableScrollPhysics(),
       crossAxisCount: 3,
-      crossAxisSpacing: 30,
+      crossAxisSpacing: 35,
       children: List.generate(
         numbers.length,
         (index) {
           return Center(
-            child: Container(
-              width: 60,
-              height: 60,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(30),
-                boxShadow: const [
-                  BoxShadow(
-                    color: Colors.grey,
-                    offset: Offset(-3, -3),
-                    blurRadius: 0.8,
-                  ),
-                ],
-              ),
-              child: Center(
-                child: Text(
-                  numbers[index],
-                  style: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+            child: Text(
+              numbers[index],
+              style: const TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
               ),
             ),
           );
