@@ -21,60 +21,57 @@ class NameW extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          Container(
-            width: 50,
-            height: 50,
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.black),
-              borderRadius: BorderRadius.circular(16),
-            ),
-            child: Icon(
-              Icons.person_outline_outlined,
-              size: 38,
-            ),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        Container(
+          width: 50,
+          height: 50,
+          decoration: BoxDecoration(
+            border: Border.all(color: Colors.black),
+            borderRadius: BorderRadius.circular(16),
           ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                _greeting(),
-                style: const TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.w400,
-                  color: Color.fromARGB(255, 122, 108, 108),
-                ),
+          child: const Icon(
+            Icons.person_outline_outlined,
+            size: 30,
+          ),
+        ),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              _greeting(),
+              style: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w400,
+                color: Color.fromARGB(255, 122, 108, 108),
               ),
-              const Padding(
-                padding: EdgeInsets.only(top: 2),
-              ),
-              Text(
-                userDate.userName,
-                style: const TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.black,
-                ),
-              ),
-            ],
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10),
-          ),
-          GestureDetector(
-            onTap: () {},
-            child: Icon(
-              Icons.more_vert_outlined,
-              size: 38,
             ),
+            const Padding(
+              padding: EdgeInsets.only(top: 2),
+            ),
+            Text(
+              userDate.userName,
+              style: const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w500,
+                color: Colors.black,
+              ),
+            ),
+          ],
+        ),
+        const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 10),
+        ),
+        GestureDetector(
+          onTap: () {},
+          child: const Icon(
+            Icons.more_vert_outlined,
+            size: 26,
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

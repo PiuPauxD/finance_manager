@@ -36,18 +36,18 @@ class _HomeScreenState extends State<HomeScreen> {
                     const Text(
                       'История транзакций',
                       style: TextStyle(
-                        fontSize: 20,
+                        fontSize: 16,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
                     GestureDetector(
                       onTap: () {},
                       child: const Text(
-                        'Показать все',
+                        'показать все',
                         style: TextStyle(
                           color: Color.fromARGB(255, 14, 10, 218),
-                          fontWeight: FontWeight.w500,
-                          fontSize: 18,
+                          fontWeight: FontWeight.w300,
+                          fontSize: 13,
                         ),
                       ),
                     ),
