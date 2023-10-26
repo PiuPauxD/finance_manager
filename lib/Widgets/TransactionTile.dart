@@ -43,20 +43,20 @@ class TransactionTile extends StatelessWidget {
               child: Icon(
                 transactionIcon,
                 color: const Color.fromARGB(255, 9, 49, 230),
-                size: 42,
+                size: 36,
               ),
             ),
             title: Text(
               transaction.itemCategoryName,
               style: const TextStyle(
-                fontSize: 22,
+                fontSize: 20,
                 fontWeight: FontWeight.w500,
               ),
             ),
             subtitle: Text(
               transaction.itemName,
               style: const TextStyle(
-                fontSize: 18,
+                fontSize: 14,
                 // fontWeight: FontWeight.w600,
                 color: Color.fromARGB(255, 138, 135, 135),
               ),
@@ -79,7 +79,7 @@ class TransactionTile extends StatelessWidget {
                 Text(
                   transaction.date,
                   style: const TextStyle(
-                    fontSize: 18,
+                    fontSize: 14,
                     color: Colors.black,
                   ),
                 ),

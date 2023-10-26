@@ -13,7 +13,7 @@ class OperationW extends StatelessWidget {
       height: 75,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
-        color: Color.fromARGB(254, 8, 28, 118),
+        color: const Color.fromARGB(253, 18, 62, 255),
       ),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -28,13 +28,13 @@ class OperationW extends StatelessWidget {
                     Icon(
                       Icons.arrow_downward_outlined,
                       color: Color.fromARGB(255, 91, 207, 95),
-                      size: 22,
+                      size: 16,
                     ),
                     Padding(padding: EdgeInsets.only(left: 5)),
                     Text(
-                      'Доходы',
+                      'доходы',
                       style: TextStyle(
-                        fontSize: 22,
+                        fontSize: 16,
                         color: Color.fromARGB(255, 217, 184, 184),
                       ),
                     ),
@@ -47,7 +47,7 @@ class OperationW extends StatelessWidget {
                   '${userDate.inflow}',
                   style: const TextStyle(
                     color: Colors.white,
-                    fontSize: 22,
+                    fontSize: 20,
                   ),
                 ),
               ],
@@ -60,13 +60,13 @@ class OperationW extends StatelessWidget {
                     Icon(
                       Icons.arrow_upward_outlined,
                       color: Colors.red,
-                      size: 22,
+                      size: 16,
                     ),
                     Padding(padding: EdgeInsets.only(left: 5)),
                     Text(
-                      'Расходы',
+                      'расходы',
                       style: TextStyle(
-                        fontSize: 22,
+                        fontSize: 16,
                         color: Color.fromARGB(255, 217, 184, 184),
                       ),
                     ),
@@ -79,7 +79,7 @@ class OperationW extends StatelessWidget {
                   '${userDate.outflow}',
                   style: const TextStyle(
                     color: Colors.white,
-                    fontSize: 22,
+                    fontSize: 20,
                   ),
                 ),
               ],
