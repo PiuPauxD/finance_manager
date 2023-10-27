@@ -12,6 +12,12 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  void deleteOperation(int index) {
+    setState(() {
+      transactions.removeAt(index);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -36,44 +42,38 @@ class _HomeScreenState extends State<HomeScreen> {
                     const Text(
                       'История транзакций',
                       style: TextStyle(
-                        fontSize: 20,
+                        fontSize: 16,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
                     GestureDetector(
                       onTap: () {},
                       child: const Text(
-                        'Показать все',
+                        'показать все',
                         style: TextStyle(
                           color: Color.fromARGB(255, 14, 10, 218),
-                          fontWeight: FontWeight.w500,
-                          fontSize: 18,
+                          fontWeight: FontWeight.w300,
+                          fontSize: 13,
                         ),
                       ),
                     ),
                   ],
                 ),
               ),
-              Expanded(
-                flex: 4,
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      ...transactions.map((transactions) => TransactionTile(
-                          transactionIcon: Icons.emoji_transportation_outlined,
-                          transaction: transactions)),
-                      ...transactions1.map((transactions1) => TransactionTile(
-                          transactionIcon: Icons.piano_outlined,
-                          transaction: transactions1)),
-                      ...transactions2.map(
-                        (transactions2) => TransactionTile(
-                            transactionIcon: Icons.medical_information_outlined,
-                            transaction: transactions2),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+              // Expanded(
+              //   flex: 4,
+              //   child: SingleChildScrollView(
+              //     child: ListView.builder(
+              //       itemCount: transactions.length,
+              //       itemBuilder: (context, index) {
+              //         return TransactionTile(
+              //             transaction: transaction,
+              //             transactionIcon: transactionIcon);
+              //       },
+
+              //     ),
+              //   ),
+              // ),
             ],
           ),
         ],

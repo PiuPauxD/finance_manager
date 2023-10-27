@@ -13,7 +13,7 @@ class OperationW extends StatelessWidget {
       height: 75,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
-        color: Color.fromARGB(254, 8, 28, 118),
+        color: const Color.fromARGB(252, 24, 14, 161),
       ),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -28,7 +28,7 @@ class OperationW extends StatelessWidget {
                     Icon(
                       Icons.arrow_downward_outlined,
                       color: Color.fromARGB(255, 91, 207, 95),
-                      size: 22,
+                      size: 20,
                     ),
                     Padding(padding: EdgeInsets.only(left: 5)),
                     Text(
@@ -60,7 +60,7 @@ class OperationW extends StatelessWidget {
                     Icon(
                       Icons.arrow_upward_outlined,
                       color: Colors.red,
-                      size: 22,
+                      size: 20,
                     ),
                     Padding(padding: EdgeInsets.only(left: 5)),
                     Text(

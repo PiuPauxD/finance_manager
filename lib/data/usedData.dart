@@ -17,9 +17,9 @@ class UserInfo {
   final double totalBalance;
   final double inflow;
   final double outflow;
-  final List<Transaction> transaction;
-  const UserInfo(this.userName, this.totalBalance, this.inflow, this.outflow,
-      this.transaction);
+  // final List<Transaction> transaction;
+  const UserInfo(this.userName, this.totalBalance, this.inflow, this.outflow);
+  // this.transaction
 }
 
 class Transaction {
@@ -65,4 +65,4 @@ List<Transaction> transactions2 = [
   )
 ];
 
-UserInfo userDate = UserInfo('PiuPau', 350.00, 317.58, 59.75, transactions);
+UserInfo userDate = UserInfo('PiuPau', 350.00, 317.58, 59.75);

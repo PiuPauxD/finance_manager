@@ -1,6 +1,6 @@
 import 'package:finance_manager/Screens/HomeScreen.dart';
 import 'package:finance_manager/Widgets/CategoryGrid.dart';
-import 'package:finance_manager/Widgets/NumPud.dart';
+import 'package:finance_manager/Widgets/NumPad.dart';
 import 'package:flutter/material.dart';
 
 class AddScreen extends StatefulWidget {
@@ -12,8 +12,6 @@ class AddScreen extends StatefulWidget {
 
 class _AddScreenState extends State<AddScreen> {
   var categoryName = 'Доходы';
-
-  String input = '0';
 
   @override
   Widget build(BuildContext context) {
@@ -89,78 +87,12 @@ class _AddScreenState extends State<AddScreen> {
             flex: 3,
             child: CategoryGrid(),
           ),
-          Expanded(
-            child: Container(
-              width: double.maxFinite,
-              height: 60,
-              decoration: const BoxDecoration(
-                color: Color.fromARGB(255, 14, 10, 218),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Icon(
-                          Icons.home_mini_outlined,
-                          size: 30,
-                          color: Colors.white,
-                        ),
-                        Padding(padding: EdgeInsets.only(left: 5)),
-                        Text(
-                          'Сумма',
-                          style: TextStyle(
-                            color: Colors.grey,
-                            fontSize: 20,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Text(
-                      '${NumPadInput(input)}',
-                      style: const TextStyle(
-                        fontSize: 32,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-          Expanded(
+          const Expanded(
             flex: 4,
-            child: GestureDetector(
-                onTap: () {
-                  setState(() {
-                    NumPadInput(input);
-                  });
-                },
-                child: NumPad()),
+            child: NumPad(),
           ),
         ],
       ),
     );
-  }
-
-  NumPadInput(String text) {
-    if (input == "⌫") {
-      if (input.isNotEmpty) {
-        input = input.substring(0, input.length - 1);
-        return;
-      } else {
-        return null;
-      }
-    }
-    if (input.endsWith(".0")) {
-      input = input.replaceAll(".0", "");
-      return;
-    }
-    input = input + text;
   }
 }

@@ -16,7 +16,7 @@ class BalanceCard extends StatelessWidget {
         height: 250,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
-          color: const Color.fromARGB(255, 9, 49, 230),
+          color: const Color.fromARGB(255, 19, 52, 201),
         ),
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 10),
@@ -27,7 +27,7 @@ class BalanceCard extends StatelessWidget {
                 'Общий баланс',
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: 26,
+                  fontSize: 20,
                 ),
               ),
               const Padding(
@@ -36,8 +36,8 @@ class BalanceCard extends StatelessWidget {
               Text(
                 'BYN ${userDate.totalBalance}',
                 style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 26,
+                  color: Color.fromARGB(255, 224, 213, 213),
+                  fontSize: 24,
                   fontWeight: FontWeight.bold,
                 ),
               ),
