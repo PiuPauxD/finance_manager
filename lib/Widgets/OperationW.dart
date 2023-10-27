@@ -32,9 +32,9 @@ class OperationW extends StatelessWidget {
                     ),
                     Padding(padding: EdgeInsets.only(left: 5)),
                     Text(
-                      'Доходы',
+                      'доходы',
                       style: TextStyle(
-                        fontSize: 22,
+                        fontSize: 16,
                         color: Color.fromARGB(255, 217, 184, 184),
                       ),
                     ),
@@ -47,7 +47,7 @@ class OperationW extends StatelessWidget {
                   '${userDate.inflow}',
                   style: const TextStyle(
                     color: Colors.white,
-                    fontSize: 22,
+                    fontSize: 20,
                   ),
                 ),
               ],
@@ -64,9 +64,9 @@ class OperationW extends StatelessWidget {
                     ),
                     Padding(padding: EdgeInsets.only(left: 5)),
                     Text(
-                      'Расходы',
+                      'расходы',
                       style: TextStyle(
-                        fontSize: 22,
+                        fontSize: 16,
                         color: Color.fromARGB(255, 217, 184, 184),
                       ),
                     ),
@@ -79,7 +79,7 @@ class OperationW extends StatelessWidget {
                   '${userDate.outflow}',
                   style: const TextStyle(
                     color: Colors.white,
-                    fontSize: 22,
+                    fontSize: 20,
                   ),
                 ),
               ],
