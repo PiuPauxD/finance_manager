@@ -24,7 +24,7 @@ class NameW extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Container(
             width: 50,
@@ -33,10 +33,13 @@ class NameW extends StatelessWidget {
               border: Border.all(color: Colors.black),
               borderRadius: BorderRadius.circular(16),
             ),
-            child: Icon(
+            child: const Icon(
               Icons.person_outline_outlined,
               size: 38,
             ),
+          ),
+          const Padding(
+            padding: EdgeInsets.only(left: 10),
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -62,16 +65,6 @@ class NameW extends StatelessWidget {
                 ),
               ),
             ],
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10),
-          ),
-          GestureDetector(
-            onTap: () {},
-            child: Icon(
-              Icons.more_vert_outlined,
-              size: 38,
-            ),
           ),
         ],
       ),

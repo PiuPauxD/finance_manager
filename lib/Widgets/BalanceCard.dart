@@ -44,7 +44,7 @@ class BalanceCard extends StatelessWidget {
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: 20),
               ),
-              Center(
+              const Center(
                 child: OperationW(),
               ),
             ],

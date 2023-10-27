@@ -38,6 +38,8 @@ dependencies:
   bottom_navy_bar: ^6.0.0
   circle_nav_bar: ^2.0.1+1
   flutter_slidable: 
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
 
 dev_dependencies:
   flutter_test:

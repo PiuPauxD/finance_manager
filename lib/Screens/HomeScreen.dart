@@ -1,8 +1,9 @@
 import 'package:finance_manager/Widgets/BalanceCard.dart';
 import 'package:finance_manager/Widgets/NameW.dart';
 import 'package:finance_manager/Widgets/TransactionTile.dart';
-import 'package:finance_manager/data/usedData.dart';
+import 'package:finance_manager/data/AddData.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -12,14 +13,29 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final _box = Hive.box('box');
+  transactionDataBase db = transactionDataBase();
+
   void deleteOperation(int index) {
     setState(() {
-      transactions.removeAt(index);
+      db.transactionList.removeAt(index);
     });
   }
 
   @override
+  void initState() {
+    super.initState();
+    if (_box.get("TRANSACTIONLIST") == null) {
+      db.initialState();
+    } else {
+      db.loadData();
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final _dateTime = DateTime.now();
+
     return SafeArea(
       child: Stack(
         children: [
@@ -27,6 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
               const Padding(padding: EdgeInsets.symmetric(vertical: 5)),
               const Expanded(
+                flex: 1,
                 child: NameW(),
               ),
               const Expanded(
@@ -60,20 +77,22 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
               ),
-              // Expanded(
-              //   flex: 4,
-              //   child: SingleChildScrollView(
-              //     child: ListView.builder(
-              //       itemCount: transactions.length,
-              //       itemBuilder: (context, index) {
-              //         return TransactionTile(
-              //             transaction: transaction,
-              //             transactionIcon: transactionIcon);
-              //       },
-
-              //     ),
-              //   ),
-              // ),
+              Expanded(
+                flex: 4,
+                child: ListView.builder(
+                  itemCount: 5,
+                  itemBuilder: (context, index) {
+                    return TransactionTile(
+                      transactionIcon: Icons.emoji_transportation,
+                      transactionCategory: 'Покупки',
+                      transacrionDescription: 'Пыва',
+                      transactionAmount: '25.0',
+                      dateTime: '${_dateTime.day}.${_dateTime.month}',
+                      deleteFunction: (context) => deleteOperation(index),
+                    );
+                  },
+                ),
+              ),
             ],
           ),
         ],

@@ -13,9 +13,9 @@ class Navbar extends StatefulWidget {
 
 class _NavbarState extends State<Navbar> {
   List screens = [
-    HomeScreen(),
-    AddScreen(),
-    StatisticScreen(),
+    const HomeScreen(),
+    const AddScreen(),
+    const StatisticScreen(),
   ];
 
   int currentIndex = 0;
@@ -32,30 +32,30 @@ class _NavbarState extends State<Navbar> {
       body: screens[currentIndex],
       bottomNavigationBar: CircleNavBar(
         activeIndex: currentIndex,
-        activeIcons: const [
-          Icon(
+        activeIcons: [
+          const Icon(
             Icons.home_outlined,
             color: Colors.white,
           ),
-          Icon(
+          const Icon(
             Icons.add_outlined,
             color: Colors.white,
           ),
-          Icon(
-            Icons.pie_chart_outline,
+          const Icon(
+            Icons.data_usage_outlined,
             color: Colors.white,
           ),
         ],
-        inactiveIcons: const [
-          Icon(
+        inactiveIcons: [
+          const Icon(
             Icons.home_outlined,
             color: Color.fromARGB(255, 14, 10, 218),
           ),
-          Icon(
+          const Icon(
             Icons.add_outlined,
             color: Color.fromARGB(255, 14, 10, 218),
           ),
-          Icon(
+          const Icon(
             Icons.data_usage_outlined,
             color: Color.fromARGB(255, 14, 10, 218),
           ),

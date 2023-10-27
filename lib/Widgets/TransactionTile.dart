@@ -1,50 +1,58 @@
-import 'package:finance_manager/data/usedData.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
+// ignore: must_be_immutable
 class TransactionTile extends StatelessWidget {
-  // final Transaction transaction;
   final IconData transactionIcon;
+  final String transactionCategory;
+  final String transacrionDescription;
+  final String transactionAmount;
+  final String dateTime;
+
   Function(BuildContext)? deleteFunction;
 
   TransactionTile({
     super.key,
-    // required this.transaction,
     required this.transactionIcon,
+    required this.transactionCategory,
+    required this.transacrionDescription,
+    required this.transactionAmount,
     required this.deleteFunction,
+    required this.dateTime,
   });
 
   @override
   Widget build(BuildContext context) {
-    // DateTime? date = DateTime.now();
+    DateTime? dateTime = DateTime.now();
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: 15,
         vertical: 5,
       ),
-      child: Container(
-        width: double.maxFinite,
-        height: 80,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15),
-          color: Colors.white,
-          boxShadow: const [
-            BoxShadow(
-              blurRadius: 1,
-              spreadRadius: 2,
-              color: Color.fromARGB(179, 225, 222, 222),
+      child: Slidable(
+        endActionPane: ActionPane(
+          motion: const StretchMotion(),
+          children: [
+            SlidableAction(
+              spacing: 10,
+              onPressed: deleteFunction,
+              icon: Icons.delete_sweep_outlined,
+              backgroundColor: Colors.white,
+              borderRadius: BorderRadius.circular(20),
             ),
           ],
         ),
-        child: Slidable(
-          endActionPane: ActionPane(
-            motion: const StretchMotion(),
-            children: [
-              SlidableAction(
-                onPressed: deleteFunction,
-                icon: Icons.delete_sweep_outlined,
-                backgroundColor: Colors.white,
-                borderRadius: BorderRadius.circular(20),
+        child: Container(
+          width: double.maxFinite,
+          height: 80,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(15),
+            color: Colors.white,
+            boxShadow: const [
+              BoxShadow(
+                blurRadius: 1,
+                spreadRadius: 2,
+                color: Color.fromARGB(179, 225, 222, 222),
               ),
             ],
           ),
@@ -58,45 +66,45 @@ class TransactionTile extends StatelessWidget {
                 child: Icon(
                   transactionIcon,
                   color: const Color.fromARGB(255, 9, 49, 230),
-                  size: 36,
+                  size: 42,
                 ),
               ),
-              // title: Text(
-              //   transaction.itemCategoryName,
-              //   style: const TextStyle(
-              //     fontSize: 20,
-              //     fontWeight: FontWeight.w500,
-              //   ),
-              // ),
-              // subtitle: Text(
-              //   transaction.itemName,
-              //   style: const TextStyle(
-              //     fontSize: 16,
-              //     color: Color.fromARGB(255, 138, 135, 135),
-              //   ),
-              // ),
+              title: Text(
+                transactionCategory,
+                style: const TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              subtitle: Text(
+                transacrionDescription,
+                style: const TextStyle(
+                  fontSize: 16,
+                  color: Color.fromARGB(255, 138, 135, 135),
+                ),
+              ),
               trailing: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  // Text(
-                  //   // transaction.amount,
-                  //   style: TextStyle(
-                  //     fontSize: 16,
-                  //     fontWeight: FontWeight.w600,
-                  //     color:
-                  //         transaction.transactionType == TransactionType.outflow
-                  //             ? Colors.red
-                  //             : Colors.green,
-                  //   ),
-                  // ),
+                  Text(
+                    transactionAmount,
+                    style: const TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                      //   color:
+                      //       transaction.transactionType == TransactionType.outflow
+                      //           ? Colors.red
+                      //           : Colors.green,
+                    ),
+                  ),
                   const Padding(padding: EdgeInsets.only(top: 5)),
-                  // Text(
-                  //   transaction.date,
-                  //   style: const TextStyle(
-                  //     fontSize: 16,
-                  //     color: Colors.black,
-                  //   ),
-                  // ),
+                  Text(
+                    '${dateTime.day}.${dateTime.month}',
+                    style: const TextStyle(
+                      fontSize: 16,
+                      color: Colors.black,
+                    ),
+                  ),
                 ],
               ),
             ),

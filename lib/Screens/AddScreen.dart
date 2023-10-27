@@ -1,4 +1,3 @@
-import 'package:finance_manager/Screens/HomeScreen.dart';
 import 'package:finance_manager/Widgets/CategoryGrid.dart';
 import 'package:finance_manager/Widgets/NumPad.dart';
 import 'package:flutter/material.dart';
@@ -52,7 +51,7 @@ class _AddScreenState extends State<AddScreen> {
                                   : 'Расходы';
                             });
                           },
-                          child: Icon(Icons.sync_outlined,
+                          child: const Icon(Icons.sync_outlined,
                               color: Colors.green, size: 40),
                         ),
                       ],
