@@ -17,10 +17,9 @@ class BalanceCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(16),
           color: const Color.fromARGB(255, 19, 52, 201),
         ),
-        child: const Padding(
-          padding: EdgeInsets.symmetric(vertical: 10),
+        child: const Expanded(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
                 'Общий баланс',

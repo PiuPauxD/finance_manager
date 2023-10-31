@@ -1,3 +1,4 @@
+import 'package:finance_manager/Screens/WelcomeScreen.dart';
 import 'package:finance_manager/Widgets/BalanceCard.dart';
 import 'package:finance_manager/Widgets/NameW.dart';
 import 'package:finance_manager/Widgets/TransactionTile.dart';
@@ -42,10 +43,12 @@ class _HomeScreenState extends State<HomeScreen> {
           Column(
             children: [
               const Padding(padding: EdgeInsets.symmetric(vertical: 5)),
-              Expanded(
-                flex: 1,
-                child: NameW(),
-              ),
+              // Expanded(
+              //   flex: 1,
+              //   child: NameW(
+              //     name:
+              //   ),
+              // ),
               const Expanded(
                 flex: 4,
                 child: BalanceCard(),
@@ -78,7 +81,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               Expanded(
-                flex: 4,
+                flex: 2,
                 child: ListView.builder(
                   itemCount: 5,
                   itemBuilder: (context, index) {
