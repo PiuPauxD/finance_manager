@@ -5,7 +5,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 class TransactionTile extends StatelessWidget {
   final IconData transactionIcon;
   final String transactionCategory;
-  final String transacrionDescription;
+
   final String transactionAmount;
   final String dateTime;
 
@@ -15,7 +15,6 @@ class TransactionTile extends StatelessWidget {
     super.key,
     required this.transactionIcon,
     required this.transactionCategory,
-    required this.transacrionDescription,
     required this.transactionAmount,
     required this.deleteFunction,
     required this.dateTime,
@@ -74,13 +73,6 @@ class TransactionTile extends StatelessWidget {
                 style: const TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.w500,
-                ),
-              ),
-              subtitle: Text(
-                transacrionDescription,
-                style: const TextStyle(
-                  fontSize: 16,
-                  color: Color.fromARGB(255, 138, 135, 135),
                 ),
               ),
               trailing: Column(

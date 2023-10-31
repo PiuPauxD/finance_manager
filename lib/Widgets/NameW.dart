@@ -1,7 +1,9 @@
-import 'package:finance_manager/data/usedData.dart';
+import 'package:finance_manager/Screens/WelcomeScreen.dart';
 import 'package:flutter/material.dart';
 
 class NameW extends StatelessWidget {
+  get userName => userName;
+
   String _greeting() {
     final hour = TimeOfDay.now().hour;
     if (hour < 6) {
@@ -21,14 +23,16 @@ class NameW extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return Container(
+      width: double.maxFinite,
+      height: 100,
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Container(
-            width: 50,
-            height: 50,
+            width: 70,
+            height: 70,
             decoration: BoxDecoration(
               border: Border.all(color: Colors.black),
               borderRadius: BorderRadius.circular(16),
@@ -41,30 +45,36 @@ class NameW extends StatelessWidget {
           const Padding(
             padding: EdgeInsets.only(left: 10),
           ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                _greeting(),
-                style: const TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.w400,
-                  color: Color.fromARGB(255, 122, 108, 108),
+          Expanded(
+            flex: 3,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Expanded(
+                  child: Text(
+                    _greeting(),
+                    style: const TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.w400,
+                      color: Color.fromARGB(255, 122, 108, 108),
+                    ),
+                  ),
                 ),
-              ),
-              const Padding(
-                padding: EdgeInsets.only(top: 2),
-              ),
-              Text(
-                userDate.userName,
-                style: const TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.black,
+                const Padding(
+                  padding: EdgeInsets.only(top: 2),
                 ),
-              ),
-            ],
+                Expanded(
+                  child: Text(
+                    userName,
+                    style: const TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.black,
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ],
       ),

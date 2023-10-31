@@ -12,7 +12,7 @@ class _StatisticScreenState extends State<StatisticScreen> {
   Widget build(BuildContext context) {
     return const SafeArea(
       child: Center(
-        child: Text('StatisticScreen'),
+        child: Text('Coming soon'),
       ),
     );
   }

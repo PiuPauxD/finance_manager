@@ -1,6 +1,10 @@
-import 'package:finance_manager/Widgets/CategoryGrid.dart';
+import 'package:finance_manager/Screens/BottomNavBar.dart';
+import 'package:finance_manager/Screens/HomeScreen.dart';
+import 'package:finance_manager/Widgets/Description.dart';
 import 'package:finance_manager/Widgets/NumPad.dart';
+import 'package:finance_manager/data/AddData.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 class AddScreen extends StatefulWidget {
   const AddScreen({super.key});
@@ -10,7 +14,48 @@ class AddScreen extends StatefulWidget {
 }
 
 class _AddScreenState extends State<AddScreen> {
-  var categoryName = 'Доходы';
+  var categoryType = 'Доходы';
+  final _box = Hive.box('box');
+  transactionDataBase db = transactionDataBase();
+
+  void saveTransaction() {
+    setState(() {
+      db.transactionList.add([
+        db.transactionList.add(
+          [
+            categoryIcon,
+            categoryName,
+          ],
+        ),
+      ]);
+    });
+  }
+
+  List<IconData> categoryIcon = [
+    Icons.commute_outlined,
+    Icons.attractions_outlined,
+    Icons.emergency_outlined,
+    Icons.shopping_cart_outlined,
+    Icons.audiotrack_outlined,
+    Icons.cases_outlined,
+    Icons.cottage_outlined,
+    Icons.food_bank_outlined,
+    Icons.add_circle_outline,
+  ];
+
+  List<String> categoryName = [
+    'Транспорт',
+    'Развлечения',
+    'Медицина',
+    'Покупки',
+    'Хобби',
+    'Работа',
+    'Дом',
+    'Продукты',
+    'Добавить',
+  ];
+
+  int tappedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +72,14 @@ class _AddScreenState extends State<AddScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (BuildContext context) => const Navbar(),
+                          ),
+                        );
+                      },
                       child: const Icon(
                         Icons.arrow_back_outlined,
                         size: 40,
@@ -36,7 +88,7 @@ class _AddScreenState extends State<AddScreen> {
                     Row(
                       children: [
                         Text(
-                          categoryName,
+                          categoryType,
                           style: const TextStyle(
                             color: Colors.black,
                             fontSize: 22,
@@ -46,7 +98,7 @@ class _AddScreenState extends State<AddScreen> {
                         GestureDetector(
                           onTap: () {
                             setState(() {
-                              categoryName = categoryName == 'Расходы'
+                              categoryType = categoryType == 'Расходы'
                                   ? 'Доходы'
                                   : 'Расходы';
                             });
@@ -57,6 +109,14 @@ class _AddScreenState extends State<AddScreen> {
                       ],
                     ),
                     GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const Navbar(),
+                          ),
+                        );
+                      },
                       child: Container(
                         height: 50,
                         decoration: BoxDecoration(
@@ -82,9 +142,40 @@ class _AddScreenState extends State<AddScreen> {
               ),
             ),
           ),
-          const Expanded(
+          Expanded(
             flex: 3,
-            child: CategoryGrid(),
+            child: GridView.builder(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3,
+              ),
+              itemCount: categoryIcon.length,
+              itemBuilder: (BuildContext context, int index) {
+                return Container(
+                  width: double.maxFinite,
+                  color: Colors.white10,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        categoryIcon[index],
+                        size: 30,
+                        color: const Color.fromARGB(255, 14, 10, 218),
+                      ),
+                      const Padding(
+                        padding: EdgeInsets.only(top: 5),
+                      ),
+                      Text(
+                        categoryName[index],
+                        style: const TextStyle(
+                          fontSize: 16,
+                          color: Color.fromARGB(255, 14, 10, 218),
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              },
+            ),
           ),
           const Expanded(
             flex: 4,

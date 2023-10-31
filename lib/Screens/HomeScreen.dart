@@ -42,7 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
           Column(
             children: [
               const Padding(padding: EdgeInsets.symmetric(vertical: 5)),
-              const Expanded(
+              Expanded(
                 flex: 1,
                 child: NameW(),
               ),
@@ -59,18 +59,18 @@ class _HomeScreenState extends State<HomeScreen> {
                     const Text(
                       'История транзакций',
                       style: TextStyle(
-                        fontSize: 16,
+                        fontSize: 18,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
                     GestureDetector(
                       onTap: () {},
                       child: const Text(
-                        'показать все',
+                        'Показать все',
                         style: TextStyle(
                           color: Color.fromARGB(255, 14, 10, 218),
-                          fontWeight: FontWeight.w300,
-                          fontSize: 13,
+                          fontWeight: FontWeight.w400,
+                          fontSize: 16,
                         ),
                       ),
                     ),
@@ -83,9 +83,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   itemCount: 5,
                   itemBuilder: (context, index) {
                     return TransactionTile(
-                      transactionIcon: Icons.emoji_transportation,
+                      transactionIcon: Icons.account_balance_wallet_outlined,
                       transactionCategory: 'Покупки',
-                      transacrionDescription: 'Пыва',
                       transactionAmount: '25.0',
                       dateTime: '${_dateTime.day}.${_dateTime.month}',
                       deleteFunction: (context) => deleteOperation(index),

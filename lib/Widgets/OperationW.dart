@@ -1,4 +1,3 @@
-import 'package:finance_manager/data/usedData.dart';
 import 'package:flutter/material.dart';
 
 class OperationW extends StatelessWidget {
@@ -15,15 +14,15 @@ class OperationW extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
         color: const Color.fromARGB(252, 24, 14, 161),
       ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10),
+      child: const Padding(
+        padding: EdgeInsets.symmetric(horizontal: 10),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Row(
+                Row(
                   children: [
                     Icon(
                       Icons.arrow_downward_outlined,
@@ -32,20 +31,20 @@ class OperationW extends StatelessWidget {
                     ),
                     Padding(padding: EdgeInsets.only(left: 5)),
                     Text(
-                      'доходы',
+                      'Доходы',
                       style: TextStyle(
-                        fontSize: 16,
+                        fontSize: 18,
                         color: Color.fromARGB(255, 217, 184, 184),
                       ),
                     ),
                   ],
                 ),
-                const Padding(
+                Padding(
                   padding: EdgeInsets.only(top: 5),
                 ),
                 Text(
-                  '${userDate.inflow}',
-                  style: const TextStyle(
+                  '1500',
+                  style: TextStyle(
                     color: Colors.white,
                     fontSize: 20,
                   ),
@@ -55,7 +54,7 @@ class OperationW extends StatelessWidget {
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Row(
+                Row(
                   children: [
                     Icon(
                       Icons.arrow_upward_outlined,
@@ -64,20 +63,20 @@ class OperationW extends StatelessWidget {
                     ),
                     Padding(padding: EdgeInsets.only(left: 5)),
                     Text(
-                      'расходы',
+                      'Расходы',
                       style: TextStyle(
-                        fontSize: 16,
+                        fontSize: 18,
                         color: Color.fromARGB(255, 217, 184, 184),
                       ),
                     ),
                   ],
                 ),
-                const Padding(
+                Padding(
                   padding: EdgeInsets.only(top: 5),
                 ),
                 Text(
-                  '${userDate.outflow}',
-                  style: const TextStyle(
+                  '150',
+                  style: TextStyle(
                     color: Colors.white,
                     fontSize: 20,
                   ),
