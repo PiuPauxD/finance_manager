@@ -32,30 +32,30 @@ class _NavbarState extends State<Navbar> {
       body: screens[currentIndex],
       bottomNavigationBar: CircleNavBar(
         activeIndex: currentIndex,
-        activeIcons: [
-          const Icon(
+        activeIcons: const [
+          Icon(
             Icons.home_outlined,
             color: Colors.white,
           ),
-          const Icon(
+          Icon(
             Icons.add_outlined,
             color: Colors.white,
           ),
-          const Icon(
+          Icon(
             Icons.data_usage_outlined,
             color: Colors.white,
           ),
         ],
-        inactiveIcons: [
-          const Icon(
+        inactiveIcons: const [
+          Icon(
             Icons.home_outlined,
             color: Color.fromARGB(255, 14, 10, 218),
           ),
-          const Icon(
+          Icon(
             Icons.add_outlined,
             color: Color.fromARGB(255, 14, 10, 218),
           ),
-          const Icon(
+          Icon(
             Icons.data_usage_outlined,
             color: Color.fromARGB(255, 14, 10, 218),
           ),
@@ -68,7 +68,7 @@ class _NavbarState extends State<Navbar> {
         shadowColor: const Color.fromARGB(250, 189, 184, 184),
         circleShadowColor: const Color.fromARGB(250, 189, 184, 184),
         elevation: 10,
-        circleColor: Color.fromARGB(255, 14, 10, 218),
+        circleColor: const Color.fromARGB(255, 14, 10, 218),
       ),
     );
   }

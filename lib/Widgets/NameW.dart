@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class NameW extends StatelessWidget {
-  final String name;
   String _greeting() {
     final hour = TimeOfDay.now().hour;
     if (hour < 6) {
@@ -17,7 +16,7 @@ class NameW extends StatelessWidget {
     }
   }
 
-  NameW({super.key, required this.name});
+  const NameW({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -58,12 +57,12 @@ class NameW extends StatelessWidget {
                 const Padding(
                   padding: EdgeInsets.only(top: 2),
                 ),
-                Text(
-                  name,
-                  style: const TextStyle(
+                const Text(
+                  'Олег Сергеевич',
+                  style: TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.w500,
-                    color: Colors.white,
+                    color: Colors.black,
                   ),
                 ),
               ],
