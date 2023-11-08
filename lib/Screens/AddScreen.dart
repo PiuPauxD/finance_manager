@@ -1,6 +1,4 @@
 import 'package:finance_manager/Screens/BottomNavBar.dart';
-import 'package:finance_manager/Screens/HomeScreen.dart';
-import 'package:finance_manager/Widgets/Description.dart';
 import 'package:finance_manager/Widgets/NumPad.dart';
 import 'package:finance_manager/data/AddData.dart';
 import 'package:flutter/material.dart';
@@ -55,7 +53,7 @@ class _AddScreenState extends State<AddScreen> {
     'Добавить',
   ];
 
-  int tappedIndex = 0;
+  int tappedIndex = -1;
 
   @override
   Widget build(BuildContext context) {
@@ -150,28 +148,43 @@ class _AddScreenState extends State<AddScreen> {
               ),
               itemCount: categoryIcon.length,
               itemBuilder: (BuildContext context, int index) {
-                return Container(
-                  width: double.maxFinite,
-                  color: Colors.white10,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        categoryIcon[index],
-                        size: 30,
-                        color: const Color.fromARGB(255, 14, 10, 218),
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.only(top: 5),
-                      ),
-                      Text(
-                        categoryName[index],
-                        style: const TextStyle(
-                          fontSize: 16,
-                          color: Color.fromARGB(255, 14, 10, 218),
+                return GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      tappedIndex = index;
+                    });
+                  },
+                  child: Container(
+                    width: double.maxFinite,
+                    color: Colors.white10,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          tappedIndex == null
+                              ? categoryIcon[tappedIndex]
+                              : categoryIcon[index],
+                          size: 30,
+                          color: index == tappedIndex
+                              ? const Color(0xffd3d0fb)
+                              : const Color.fromARGB(255, 14, 10, 218),
                         ),
-                      ),
-                    ],
+                        const Padding(
+                          padding: EdgeInsets.only(top: 5),
+                        ),
+                        Text(
+                          tappedIndex == null
+                              ? categoryName[tappedIndex]
+                              : categoryName[index],
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: index == tappedIndex
+                                ? const Color(0xffd3d0fb)
+                                : const Color.fromARGB(255, 14, 10, 218),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 );
               },
