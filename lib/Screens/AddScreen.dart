@@ -1,6 +1,7 @@
 import 'package:finance_manager/Screens/BottomNavBar.dart';
+import 'package:finance_manager/Widgets/Description.dart';
 import 'package:finance_manager/Widgets/NumPad.dart';
-import 'package:finance_manager/data/AddData.dart';
+import 'package:finance_manager/data/model/AddData.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -12,22 +13,10 @@ class AddScreen extends StatefulWidget {
 }
 
 class _AddScreenState extends State<AddScreen> {
+  final box = Hive.box<AddData>('data');
+  String opDescription = 'Жесть';
+  String input = '222';
   var categoryType = 'Доходы';
-  final _box = Hive.box('box');
-  transactionDataBase db = transactionDataBase();
-
-  void saveTransaction() {
-    setState(() {
-      db.transactionList.add([
-        db.transactionList.add(
-          [
-            categoryIcon,
-            categoryName,
-          ],
-        ),
-      ]);
-    });
-  }
 
   List<IconData> categoryIcon = [
     Icons.commute_outlined,
@@ -54,6 +43,8 @@ class _AddScreenState extends State<AddScreen> {
   ];
 
   int tappedIndex = -1;
+
+  DateTime date = new DateTime.now();
 
   @override
   Widget build(BuildContext context) {
@@ -108,12 +99,16 @@ class _AddScreenState extends State<AddScreen> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const Navbar(),
-                          ),
+                        var add = AddData(
+                          categoryIcon[tappedIndex],
+                          categoryName[tappedIndex],
+                          opDescription,
+                          input,
+                          categoryType,
+                          date,
                         );
+                        box.add(add);
+                        Navigator.of(context).pop();
                       },
                       child: Container(
                         height: 50,
@@ -152,38 +147,51 @@ class _AddScreenState extends State<AddScreen> {
                   onTap: () {
                     setState(() {
                       tappedIndex = index;
+                      showDialog(
+                          context: context,
+                          builder: (context) {
+                            return Description(
+                              opDescription: null,
+                              onSave: () {},
+                            );
+                          });
                     });
                   },
-                  child: Container(
-                    width: double.maxFinite,
-                    color: Colors.white10,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          tappedIndex == null
-                              ? categoryIcon[tappedIndex]
-                              : categoryIcon[index],
-                          size: 30,
-                          color: index == tappedIndex
-                              ? const Color(0xffd3d0fb)
-                              : const Color.fromARGB(255, 14, 10, 218),
-                        ),
-                        const Padding(
-                          padding: EdgeInsets.only(top: 5),
-                        ),
-                        Text(
-                          tappedIndex == null
-                              ? categoryName[tappedIndex]
-                              : categoryName[index],
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: index == tappedIndex
-                                ? const Color(0xffd3d0fb)
-                                : const Color.fromARGB(255, 14, 10, 218),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 10, vertical: 10),
+                    child: Container(
+                      width: double.maxFinite,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(17),
+                        color: index == tappedIndex
+                            ? const Color(0xffd3d0fb)
+                            : Colors.white10,
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            tappedIndex == null
+                                ? categoryIcon[tappedIndex]
+                                : categoryIcon[index],
+                            size: 30,
+                            color: const Color.fromARGB(255, 14, 10, 218),
                           ),
-                        ),
-                      ],
+                          const Padding(
+                            padding: EdgeInsets.only(top: 5),
+                          ),
+                          Text(
+                            tappedIndex == null
+                                ? categoryName[tappedIndex]
+                                : categoryName[index],
+                            style: const TextStyle(
+                              fontSize: 16,
+                              color: Color.fromARGB(255, 14, 10, 218),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 );

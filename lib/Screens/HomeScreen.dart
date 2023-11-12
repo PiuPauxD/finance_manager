@@ -1,7 +1,6 @@
 import 'package:finance_manager/Widgets/BalanceCard.dart';
 import 'package:finance_manager/Widgets/NameW.dart';
 import 'package:finance_manager/Widgets/TransactionTile.dart';
-
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
