@@ -57,7 +57,7 @@ class _AddScreenState extends State<AddScreen> {
     '⌫',
   ];
 
-  String input = ' ';
+  String input = '';
 
   int tappedIndex = -1;
 
@@ -117,15 +117,25 @@ class _AddScreenState extends State<AddScreen> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          var add = AddData(
-                            categoryIcon[tappedIndex].toString(),
-                            categoryName[tappedIndex],
-                            input,
-                            categoryType,
-                            date,
-                          );
-                          box.add(add);
-                          Navigator.of(context).pop();
+                          if (tappedIndex == -1) {
+                            popUpMessage(
+                                context: context,
+                                message: "Выберите категорию!");
+                          } else if (input.isEmpty) {
+                            popUpMessage(
+                                context: context, message: "Введите сумму!");
+                          } else {
+                            var add = AddData(
+                              categoryIcon[tappedIndex].codePoint,
+                              categoryIcon[tappedIndex].fontFamily.toString(),
+                              categoryName[tappedIndex],
+                              input,
+                              categoryType,
+                              date,
+                            );
+                            box.add(add);
+                            popUpMessage(context: context);
+                          }
                         },
                         child: Container(
                           height: 50,
@@ -323,4 +333,21 @@ class _AddScreenState extends State<AddScreen> {
     super.debugFillProperties(properties);
     properties.add(StringProperty('input', input));
   }
+}
+
+Future<void> popUpMessage({required BuildContext context, String? message}) {
+  return showDialog<String>(
+    context: context,
+    builder: (BuildContext context) => AlertDialog(
+      title: message == null
+          ? const Text('Транзакция успешно добавлена!')
+          : Text(message),
+      actions: <Widget>[
+        TextButton(
+          onPressed: () => Navigator.pop(context),
+          child: const Text('Хорошо!'),
+        ),
+      ],
+    ),
+  );
 }
