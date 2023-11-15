@@ -13,9 +13,9 @@ class Navbar extends StatefulWidget {
 
 class _NavbarState extends State<Navbar> {
   List screens = [
-    const HomeScreen(),
-    const AddScreen(),
-    const StatisticScreen(),
+    HomeScreen(),
+    AddScreen(),
+    StatisticScreen(),
   ];
 
   int currentIndex = 0;
@@ -60,8 +60,8 @@ class _NavbarState extends State<Navbar> {
             color: Color.fromARGB(255, 14, 10, 218),
           ),
         ],
-        height: 60,
-        circleWidth: 60,
+        height: 50,
+        circleWidth: 50,
         color: Colors.white,
         onTap: onTap,
         padding: const EdgeInsets.only(top: 10),
