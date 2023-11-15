@@ -6,7 +6,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 void main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(AddDataAdapter());
-  await Hive.openBox<AddData>('data');
+  await Hive.openBox<AddData>('name');
   runApp(
     const MaterialApp(
       debugShowCheckedModeBanner: false,

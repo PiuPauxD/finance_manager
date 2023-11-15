@@ -1,4 +1,5 @@
 import 'package:finance_manager/data/model/AddData.dart';
+import 'package:finance_manager/data/model/utility.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -26,15 +27,14 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   var history;
-  final box = Hive.box<AddData>('data');
+  final box = Hive.box<AddData>('name');
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
         leading: Container(
-          height: 60,
-          width: 60,
           decoration: BoxDecoration(
             border: Border.all(color: Colors.black, width: 1),
             borderRadius: BorderRadius.circular(16),
@@ -42,6 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
           child: IconButton(
             onPressed: () {},
             icon: const Icon(
+              color: Colors.black,
               Icons.person_outline_outlined,
               size: 40,
             ),
@@ -117,7 +118,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   height: 90,
                   width: double.maxFinite,
                   decoration: BoxDecoration(
-                    color: Colors.blue,
+                    color: Colors.white38,
                     borderRadius: BorderRadius.circular(16),
                   ),
                   child: ListView.builder(
@@ -148,10 +149,14 @@ class _HomeScreenState extends State<HomeScreen> {
 
   ListTile get(int index, AddData history) {
     return ListTile(
-      leading: ClipRRect(
-        borderRadius: BorderRadius.circular(8),
+      leading: Container(
+        constraints: BoxConstraints.tight(const Size.fromRadius(20)),
+        decoration: BoxDecoration(
+          borderRadius: const BorderRadius.all(Radius.circular(15)),
+          border: Border.all(width: 1.5),
+        ),
         child: Icon(
-          IconData(history.operationIcon.hashCode),
+          IconData(history.operationIcon, fontFamily: history.iconFamily),
         ),
       ),
       title: Text(
@@ -173,7 +178,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           Text(
-            '${history.datetime.day}' '${history.datetime.month}',
+            '${history.datetime.day}.' '${history.datetime.month}',
             style: const TextStyle(
               color: Colors.grey,
               fontSize: 16,
@@ -210,10 +215,10 @@ class _HomeScreenState extends State<HomeScreen> {
           const Padding(
             padding: EdgeInsets.symmetric(vertical: 15),
           ),
-          const Row(
+          Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
+              const Text(
                 'BYN',
                 style: TextStyle(
                   fontSize: 20,
@@ -221,12 +226,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   color: Color.fromARGB(255, 197, 190, 190),
                 ),
               ),
-              Padding(
+              const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 5),
               ),
               Text(
-                '1500.0',
-                style: TextStyle(
+                '${total()}',
+                style: const TextStyle(
                   color: Colors.white,
                   fontSize: 24,
                   fontWeight: FontWeight.w600,
@@ -243,15 +248,16 @@ class _HomeScreenState extends State<HomeScreen> {
                 color: const Color.fromARGB(255, 11, 9, 141),
                 borderRadius: BorderRadius.circular(16),
               ),
-              child: const Padding(
-                padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Row(
+                        const Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Icon(
@@ -272,8 +278,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           ],
                         ),
                         Text(
-                          '1800',
-                          style: TextStyle(
+                          '${income()}',
+                          style: const TextStyle(
                             color: Colors.white,
                             fontSize: 20,
                             fontWeight: FontWeight.w500,
@@ -281,14 +287,14 @@ class _HomeScreenState extends State<HomeScreen> {
                         )
                       ],
                     ),
-                    Padding(
+                    const Padding(
                       padding:
                           EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                     ),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Row(
+                        const Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Icon(
@@ -309,8 +315,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           ],
                         ),
                         Text(
-                          '300.0',
-                          style: TextStyle(
+                          '${expenses()}',
+                          style: const TextStyle(
                             color: Colors.white,
                             fontSize: 20,
                             fontWeight: FontWeight.w500,

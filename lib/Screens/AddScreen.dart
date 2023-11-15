@@ -1,5 +1,4 @@
 import 'package:finance_manager/Screens/BottomNavBar.dart';
-
 import 'package:finance_manager/data/model/AddData.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +13,7 @@ class AddScreen extends StatefulWidget {
 }
 
 class _AddScreenState extends State<AddScreen> {
-  final box = Hive.box<AddData>('data');
+  final box = Hive.box<AddData>('name');
 
   var categoryType = 'Доходы';
 
@@ -117,15 +116,25 @@ class _AddScreenState extends State<AddScreen> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          var add = AddData(
-                            categoryIcon[tappedIndex].toString(),
-                            categoryName[tappedIndex],
-                            input,
-                            categoryType,
-                            date,
-                          );
-                          box.add(add);
-                          Navigator.of(context).pop();
+                          if (tappedIndex == -1) {
+                            popUpMessage(
+                                context: context,
+                                message: "Выберите категорию!");
+                          } else if (input.isEmpty) {
+                            popUpMessage(
+                                context: context, message: "Введите сумму!");
+                          } else {
+                            var add = AddData(
+                              categoryIcon[tappedIndex].codePoint,
+                              '${categoryIcon[tappedIndex].fontFamily}',
+                              categoryName[tappedIndex],
+                              input,
+                              categoryType,
+                              date,
+                            );
+                            box.add(add);
+                            popUpMessage(context: context);
+                          }
                         },
                         child: Container(
                           height: 50,
@@ -323,4 +332,28 @@ class _AddScreenState extends State<AddScreen> {
     super.debugFillProperties(properties);
     properties.add(StringProperty('input', input));
   }
+}
+
+Future<void> popUpMessage({required BuildContext context, String? message}) {
+  return showDialog<String>(
+    context: context,
+    builder: (BuildContext context) => AlertDialog(
+      title: message == null
+          ? const Text('Транзакция успешно добавлена!')
+          : Text(message),
+      actions: <Widget>[
+        TextButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (BuildContext context) => const Navbar(),
+              ),
+            );
+          },
+          child: const Text('Хорошо!'),
+        ),
+      ],
+    ),
+  );
 }
