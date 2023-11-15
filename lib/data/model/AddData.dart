@@ -5,15 +5,17 @@ part 'AddData.g.dart';
 @HiveType(typeId: 1)
 class AddData extends HiveObject {
   @HiveField(0)
-  String operationIcon;
+  int operationIcon;
   @HiveField(1)
-  String operationName;
+  String iconFamily;
   @HiveField(2)
-  String amount;
+  String operationName;
   @HiveField(3)
-  String IN;
+  String amount;
   @HiveField(4)
+  String IN;
+  @HiveField(5)
   DateTime datetime;
-  AddData(this.operationIcon, this.operationName, this.amount, this.IN,
-      this.datetime);
+  AddData(this.operationIcon, this.iconFamily, this.operationName, this.amount,
+      this.IN, this.datetime);
 }
