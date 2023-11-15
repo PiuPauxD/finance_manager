@@ -2,6 +2,7 @@ import 'package:circle_nav_bar/circle_nav_bar.dart';
 import 'package:finance_manager/Screens/AddScreen.dart';
 import 'package:finance_manager/Screens/HomeScreen.dart';
 import 'package:finance_manager/Screens/StatisticScreen.dart';
+
 import 'package:flutter/material.dart';
 
 class Navbar extends StatefulWidget {
@@ -13,12 +14,12 @@ class Navbar extends StatefulWidget {
 
 class _NavbarState extends State<Navbar> {
   List screens = [
-    HomeScreen(),
-    AddScreen(),
-    StatisticScreen(),
+    const HomeScreen(),
+    const AddScreen(),
+    const StatisticScreen(),
   ];
 
-  int currentIndex = 0;
+  int currentIndex = 1;
 
   void onTap(int index) {
     setState(() {
