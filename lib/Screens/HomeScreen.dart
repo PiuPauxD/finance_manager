@@ -148,14 +148,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
   ListTile get(int index, AddData history) {
     return ListTile(
-      leading: Container(
-        constraints: BoxConstraints.tight(const Size.fromRadius(20)),
-        decoration: BoxDecoration(
-          borderRadius: const BorderRadius.all(Radius.circular(15)),
-          border: Border.all(width: 1.5),
-        ),
+      leading: ClipRRect(
+        borderRadius: BorderRadius.circular(8),
         child: Icon(
-          IconData(history.operationIcon, fontFamily: history.iconFamily),
+          IconData(history.operationIcon.hashCode),
         ),
       ),
       title: Text(
@@ -177,7 +173,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           Text(
-            '${history.datetime.day}.' '${history.datetime.month}',
+            '${history.datetime.day}' '${history.datetime.month}',
             style: const TextStyle(
               color: Colors.grey,
               fontSize: 16,

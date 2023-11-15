@@ -17,30 +17,27 @@ class AddDataAdapter extends TypeAdapter<AddData> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return AddData(
-      fields[0] as int,
+      fields[0] as String,
       fields[1] as String,
       fields[2] as String,
       fields[3] as String,
-      fields[4] as String,
-      fields[5] as DateTime,
+      fields[4] as DateTime,
     );
   }
 
   @override
   void write(BinaryWriter writer, AddData obj) {
     writer
-      ..writeByte(6)
+      ..writeByte(5)
       ..writeByte(0)
       ..write(obj.operationIcon)
       ..writeByte(1)
-      ..write(obj.iconFamily)
-      ..writeByte(2)
       ..write(obj.operationName)
-      ..writeByte(3)
+      ..writeByte(2)
       ..write(obj.amount)
-      ..writeByte(4)
+      ..writeByte(3)
       ..write(obj.IN)
-      ..writeByte(5)
+      ..writeByte(4)
       ..write(obj.datetime);
   }
 
