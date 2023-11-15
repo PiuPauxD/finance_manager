@@ -19,7 +19,7 @@ class _NavbarState extends State<Navbar> {
     const StatisticScreen(),
   ];
 
-  int currentIndex = 1;
+  int currentIndex = 0;
 
   void onTap(int index) {
     setState(() {
