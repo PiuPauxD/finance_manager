@@ -1,3 +1,4 @@
+import 'package:finance_manager/Screens/ProfileScreen.dart';
 import 'package:finance_manager/data/model/AddData.dart';
 import 'package:finance_manager/data/model/utility.dart';
 import 'package:flutter/material.dart';
@@ -34,17 +35,23 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        leading: Container(
-          decoration: BoxDecoration(
-            border: Border.all(color: Colors.black, width: 1),
-            borderRadius: BorderRadius.circular(16),
-          ),
-          child: IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              color: Colors.black,
-              Icons.person_outline_outlined,
-              size: 40,
+        leading: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+          child: GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (BuildContext context) => const ProfileScreen(),
+                ),
+              );
+            },
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(16),
+              child: Image.asset(
+                'img/profile1.jpg',
+                fit: BoxFit.cover,
+              ),
             ),
           ),
         ),
@@ -121,12 +128,17 @@ class _HomeScreenState extends State<HomeScreen> {
                     color: Colors.white38,
                     borderRadius: BorderRadius.circular(16),
                   ),
-                  child: ListView.builder(
-                    scrollDirection: Axis.vertical,
-                    itemCount: box.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      history = box.values.toList()[index];
-                      return getList(history, index);
+                  child: ValueListenableBuilder(
+                    valueListenable: box.listenable(),
+                    builder: (context, value, child) {
+                      return ListView.builder(
+                        scrollDirection: Axis.vertical,
+                        itemCount: box.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          history = box.values.toList()[index];
+                          return getList(history, index);
+                        },
+                      );
                     },
                   ),
                 ),
@@ -230,7 +242,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 padding: EdgeInsets.symmetric(horizontal: 5),
               ),
               Text(
-                '${total()}',
+                '${total().toStringAsFixed(2)}',
                 style: const TextStyle(
                   color: Colors.white,
                   fontSize: 24,
@@ -278,7 +290,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ],
                         ),
                         Text(
-                          '${income()}',
+                          '${income().toStringAsFixed(2)}',
                           style: const TextStyle(
                             color: Colors.white,
                             fontSize: 20,
@@ -315,7 +327,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ],
                         ),
                         Text(
-                          '${expenses()}',
+                          '${expenses().toStringAsFixed(2)}',
                           style: const TextStyle(
                             color: Colors.white,
                             fontSize: 20,

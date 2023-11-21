@@ -26,6 +26,9 @@ class _AddScreenState extends State<AddScreen> {
     Icons.cases_outlined,
     Icons.cottage_outlined,
     Icons.food_bank_outlined,
+    Icons.phone_android_outlined,
+    Icons.movie_outlined,
+    Icons.cake_outlined,
     Icons.add_circle_outline,
   ];
 
@@ -38,6 +41,9 @@ class _AddScreenState extends State<AddScreen> {
     'Работа',
     'Дом',
     'Продукты',
+    'Телефон',
+    'Досуг',
+    'Подарки',
     'Добавить',
   ];
 
