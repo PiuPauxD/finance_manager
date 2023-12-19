@@ -2,6 +2,11 @@ import 'package:finance_manager/ProfileTiles.dart';
 import 'package:finance_manager/Screens/BottomNavBar.dart';
 import 'package:flutter/material.dart';
 
+List<String> language = [
+  'Ru',
+  'En',
+];
+
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
 
@@ -10,6 +15,9 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  bool isSwitched = false;
+
+  String dropdownValue = language.first;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,25 +82,71 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
             //tiles
             Expanded(
-              flex: 6,
-              child: ListView(
-                scrollDirection: Axis.vertical,
-                children: const [
-                  ProfileTile(
-                    profileIcons: Icons.settings_outlined,
-                    settingName: 'Настройки',
+              flex: 4,
+              child: Column(
+                children: [
+                  Flexible(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        //dark mode
+                        const ProfileTile(
+                          profileIcons: Icons.dark_mode_outlined,
+                          settingName: 'Ночная тема',
+                        ),
+                        Switch(
+                          value: isSwitched,
+                          onChanged: (value) {
+                            setState(() {
+                              isSwitched = value;
+                            });
+                          },
+                          activeTrackColor: Colors.grey,
+                          activeColor: Colors.yellow,
+                        ),
+                      ],
+                    ),
                   ),
-                  ProfileTile(
-                    profileIcons: Icons.settings_outlined,
-                    settingName: 'Настройки',
+                  //language
+
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      const ProfileTile(
+                        profileIcons: Icons.language_outlined,
+                        settingName: 'Язык',
+                      ),
+                      DropdownMenu<String>(
+                        initialSelection: language.first,
+                        onSelected: (String? value) {
+                          setState(() {
+                            dropdownValue = value!;
+                          });
+                        },
+                        dropdownMenuEntries:
+                            language.map<DropdownMenuEntry<String>>(
+                          (String value) {
+                            return DropdownMenuEntry<String>(
+                                value: value, label: value);
+                          },
+                        ).toList(),
+                      ),
+                    ],
                   ),
-                  ProfileTile(
-                    profileIcons: Icons.settings_outlined,
-                    settingName: 'Настройки',
-                  ),
-                  ProfileTile(
-                    profileIcons: Icons.exit_to_app,
-                    settingName: 'Выход',
+
+                  //exit from app
+
+                  const Padding(
+                    padding: EdgeInsets.only(left: 10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        ProfileTile(
+                          profileIcons: Icons.exit_to_app,
+                          settingName: 'Выход',
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),

@@ -39,3 +39,89 @@ double expenses() {
   totals = a.reduce((value, element) => value + element);
   return totals;
 }
+
+List<AddData> today() {
+  List<AddData> a = [];
+  var history = box.values.toList();
+  DateTime date = new DateTime.now();
+  for (var i = 0; i < history.length; i++) {
+    if (history[i].datetime.day == date.day) {
+      a.add(history[i]);
+    }
+  }
+  return a;
+}
+
+List<AddData> week() {
+  List<AddData> a = [];
+  DateTime date = new DateTime.now();
+  var history = box.values.toList();
+  for (var i = 0; i < history.length; i++) {
+    if (date.day - 7 <= history[i].datetime.day &&
+        history[i].datetime.day <= date.day) {
+      a.add(history[i]);
+    }
+  }
+  return a;
+}
+
+List<AddData> month() {
+  List<AddData> a = [];
+  var history = box.values.toList();
+  DateTime date = new DateTime.now();
+  for (var i = 0; i < history.length; i++) {
+    if (history[i].datetime.month == date.month) {
+      a.add(history[i]);
+    }
+  }
+  return a;
+}
+
+List<AddData> year() {
+  List<AddData> a = [];
+  var history = box.values.toList();
+  DateTime date = new DateTime.now();
+  for (var i = 0; i < history.length; i++) {
+    if (history[i].datetime.year == date.year) {
+      a.add(history[i]);
+    }
+  }
+  return a;
+}
+
+double totalChart(List<AddData> history) {
+  List a = [0.00, 0.00];
+  for (var i = 0; i < history.length; i++) {
+    a.add(history[i].IN == 'Доходы'
+        ? int.parse(history[i].amount)
+        : int.parse(history[i].amount) * -1);
+  }
+  totals = a.reduce((value, element) => value + element);
+  return totals;
+}
+
+List time(List<AddData> history, bool hour) {
+  List<AddData> a = [];
+  List total = [];
+  int counter = 0;
+  for (var c = 0; c < history.length; c++) {
+    for (var i = c; i < history.length; i++) {
+      if (hour) {
+        if (history[i].datetime.hour == history[c].datetime.hour) {
+          a.add(history[i]);
+          counter = i;
+        }
+      } else {
+        if (history[i].datetime.day == history[c].datetime.day) {
+          a.add(history[i]);
+          counter = i;
+        }
+      }
+    }
+    total.add(totalChart(a));
+    a.clear();
+    c = counter;
+  }
+  print(total);
+  return total;
+}

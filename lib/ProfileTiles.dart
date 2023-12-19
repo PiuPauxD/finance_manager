@@ -13,27 +13,18 @@ class ProfileTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: double.maxFinite,
+      width: 200,
       height: 80,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           const Padding(
-            padding: EdgeInsets.only(left: 10),
+            padding: EdgeInsets.only(left: 15),
           ),
-          Container(
-            width: 50,
-            height: 50,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              border: Border.all(color: Colors.grey, width: 1),
-              borderRadius: BorderRadius.circular(16),
-            ),
-            child: Icon(
-              profileIcons,
-              size: 35,
-              color: Colors.black,
-            ),
+          Icon(
+            profileIcons,
+            size: 30,
+            color: Colors.black,
           ),
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 10),
