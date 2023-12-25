@@ -42,11 +42,11 @@ double expenses() {
 
 List<AddData> today() {
   List<AddData> a = [];
-  var history = box.values.toList();
+  var history2 = box.values.toList();
   DateTime date = new DateTime.now();
-  for (var i = 0; i < history.length; i++) {
-    if (history[i].datetime.day == date.day) {
-      a.add(history[i]);
+  for (var i = 0; i < history2.length; i++) {
+    if (history2[i].datetime.day == date.day) {
+      a.add(history2[i]);
     }
   }
   return a;
@@ -55,11 +55,11 @@ List<AddData> today() {
 List<AddData> week() {
   List<AddData> a = [];
   DateTime date = new DateTime.now();
-  var history = box.values.toList();
-  for (var i = 0; i < history.length; i++) {
-    if (date.day - 7 <= history[i].datetime.day &&
-        history[i].datetime.day <= date.day) {
-      a.add(history[i]);
+  var history2 = box.values.toList();
+  for (var i = 0; i < history2.length; i++) {
+    if (date.day - 7 <= history2[i].datetime.day &&
+        history2[i].datetime.day <= date.day) {
+      a.add(history2[i]);
     }
   }
   return a;
@@ -67,11 +67,11 @@ List<AddData> week() {
 
 List<AddData> month() {
   List<AddData> a = [];
-  var history = box.values.toList();
+  var history2 = box.values.toList();
   DateTime date = new DateTime.now();
-  for (var i = 0; i < history.length; i++) {
-    if (history[i].datetime.month == date.month) {
-      a.add(history[i]);
+  for (var i = 0; i < history2.length; i++) {
+    if (history2[i].datetime.month == date.month) {
+      a.add(history2[i]);
     }
   }
   return a;
@@ -79,41 +79,41 @@ List<AddData> month() {
 
 List<AddData> year() {
   List<AddData> a = [];
-  var history = box.values.toList();
+  var history2 = box.values.toList();
   DateTime date = new DateTime.now();
-  for (var i = 0; i < history.length; i++) {
-    if (history[i].datetime.year == date.year) {
-      a.add(history[i]);
+  for (var i = 0; i < history2.length; i++) {
+    if (history2[i].datetime.year == date.year) {
+      a.add(history2[i]);
     }
   }
   return a;
 }
 
-double totalChart(List<AddData> history) {
-  List a = [0.00, 0.00];
-  for (var i = 0; i < history.length; i++) {
-    a.add(history[i].IN == 'Доходы'
-        ? int.parse(history[i].amount)
-        : int.parse(history[i].amount) * -1);
+double totalChart(List<AddData> history2) {
+  List a = [0.0, 0.0];
+  for (var i = 0; i < history2.length; i++) {
+    a.add(history2[i].IN == 'Доходы'
+        ? double.parse(history2[i].amount)
+        : double.parse(history2[i].amount) * -1);
   }
   totals = a.reduce((value, element) => value + element);
   return totals;
 }
 
-List time(List<AddData> history, bool hour) {
+List time(List<AddData> history2, bool hour) {
   List<AddData> a = [];
   List total = [];
   int counter = 0;
-  for (var c = 0; c < history.length; c++) {
-    for (var i = c; i < history.length; i++) {
+  for (var c = 0; c < history2.length; c++) {
+    for (var i = c; i < history2.length; i++) {
       if (hour) {
-        if (history[i].datetime.hour == history[c].datetime.hour) {
-          a.add(history[i]);
+        if (history2[i].datetime.hour == history2[c].datetime.hour) {
+          a.add(history2[i]);
           counter = i;
         }
       } else {
-        if (history[i].datetime.day == history[c].datetime.day) {
-          a.add(history[i]);
+        if (history2[i].datetime.day == history2[c].datetime.day) {
+          a.add(history2[i]);
           counter = i;
         }
       }
@@ -122,6 +122,6 @@ List time(List<AddData> history, bool hour) {
     a.clear();
     c = counter;
   }
-  print(total);
+
   return total;
 }

@@ -1,7 +1,9 @@
 import 'package:finance_manager/Screens/BottomNavBar.dart';
+import 'package:finance_manager/data/chart.dart';
+import 'package:finance_manager/data/model/AddData.dart';
 import 'package:finance_manager/data/model/utility.dart';
-import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 class StatisticScreen extends StatefulWidget {
   const StatisticScreen({super.key});
@@ -10,7 +12,14 @@ class StatisticScreen extends StatefulWidget {
   State<StatisticScreen> createState() => _StatisticScreenState();
 }
 
+ValueNotifier kj = ValueNotifier(0);
+
 class _StatisticScreenState extends State<StatisticScreen> {
+  List day = ['День', 'Неделя', 'Месяц', 'Год'];
+  List f = [today(), week(), month(), year()];
+  List<AddData> a = [];
+  int index_color = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,63 +53,100 @@ class _StatisticScreenState extends State<StatisticScreen> {
                       const Icon(Icons.data_usage_outlined, size: 28),
                     ],
                   ),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 5),
-                      child: SizedBox(
-                        width: MediaQuery.of(context).size.width / 2,
-                        height: 200,
-                        child: Stack(
-                          alignment: Alignment.center,
+                  ValueListenableBuilder(
+                      valueListenable: kj,
+                      builder:
+                          (BuildContext context, dynamic value, Widget? child) {
+                        a = f[value];
+                        return Column(
                           children: [
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                            const SizedBox(height: 10),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text(
-                                  '${income().toStringAsFixed(2)}',
-                                  style: const TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                const Padding(
-                                  padding: EdgeInsets.only(top: 5),
-                                  child: Text(
-                                    'Доходы',
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w400,
-                                      color: Color.fromARGB(255, 141, 137, 137),
-                                    ),
-                                  ),
+                                ...List.generate(
+                                  4,
+                                  (index) {
+                                    return GestureDetector(
+                                      onTap: () {
+                                        setState(() {
+                                          index_color = index;
+                                          kj.value = index;
+                                        });
+                                      },
+                                      child: Container(
+                                        height: 40,
+                                        width: 80,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(16),
+                                          color: index_color == index
+                                              ? const Color.fromARGB(
+                                                  255, 14, 10, 218)
+                                              : Colors.white,
+                                        ),
+                                        alignment: Alignment.center,
+                                        child: Text(
+                                          day[index],
+                                          style: TextStyle(
+                                            color: index_color == index
+                                                ? Colors.white
+                                                : Colors.black,
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  },
                                 ),
                               ],
                             ),
-                            PieChart(
-                              swapAnimationDuration:
-                                  const Duration(milliseconds: 650),
-                              swapAnimationCurve: Curves.easeInCirc,
-                              PieChartData(
-                                sections: [
-                                  PieChartSectionData(
-                                    value: 50,
-                                    color: Colors.yellow,
-                                  ),
-                                  PieChartSectionData(
-                                    value: 79,
-                                    color: Colors.purple,
-                                  ),
-                                  PieChartSectionData(
-                                    value: 120,
-                                    color: Colors.blue,
-                                  ),
-                                ],
-                              ),
-                            ),
+                            const SizedBox(height: 15),
+                            Chart(indexx: index_color),
                           ],
+                        );
+                      }),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text(
+                        'Основные расходы',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.black,
                         ),
                       ),
+                      IconButton(
+                        onPressed: () {},
+                        icon: const Icon(
+                          Icons.swap_vert_outlined,
+                          color: Color.fromARGB(255, 14, 10, 218),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    height: MediaQuery.of(context).size.height / 2.5,
+                    width: double.maxFinite,
+                    decoration: BoxDecoration(
+                      color: Colors.white38,
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                    child: ValueListenableBuilder(
+                      valueListenable: box.listenable(),
+                      builder: (context, value, child) {
+                        return ListView.builder(
+                          scrollDirection: Axis.vertical,
+                          itemCount: box.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            var history = box.values.toList()[index];
+                            return getList(history, index);
+                          },
+                        );
+                      },
                     ),
                   ),
                 ],
@@ -111,4 +157,56 @@ class _StatisticScreenState extends State<StatisticScreen> {
       ),
     );
   }
+}
+
+Widget getList(AddData history, int index) {
+  return Dismissible(
+      key: UniqueKey(),
+      onDismissed: (direction) {
+        history.delete();
+      },
+      child: get(index, history));
+}
+
+ListTile get(int index, AddData history) {
+  return ListTile(
+    leading: Container(
+      constraints: BoxConstraints.tight(const Size.fromRadius(20)),
+      decoration: BoxDecoration(
+        borderRadius: const BorderRadius.all(Radius.circular(15)),
+        border: Border.all(width: 1.5),
+      ),
+      child: Icon(
+        IconData(history.operationIcon, fontFamily: history.iconFamily),
+      ),
+    ),
+    title: Text(
+      history.operationName,
+      style: const TextStyle(
+        fontSize: 18,
+        fontWeight: FontWeight.w500,
+        color: Colors.black,
+      ),
+    ),
+    trailing: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          history.amount,
+          style: TextStyle(
+            fontSize: 18,
+            color: history.IN == 'Доходы' ? Colors.green : Colors.red,
+          ),
+        ),
+        Text(
+          '${history.datetime.day}.' '${history.datetime.month}',
+          style: const TextStyle(
+            color: Colors.grey,
+            fontSize: 16,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+      ],
+    ),
+  );
 }
