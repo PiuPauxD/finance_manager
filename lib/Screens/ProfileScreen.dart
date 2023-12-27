@@ -1,5 +1,6 @@
 import 'package:finance_manager/ProfileTiles.dart';
 import 'package:finance_manager/Screens/BottomNavBar.dart';
+import 'package:finance_manager/widgets/currency.dart';
 import 'package:finance_manager/widgets/drop_down.dart';
 import 'package:finance_manager/widgets/switch_button.dart';
 import 'package:flutter/material.dart';
@@ -113,6 +114,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 top: 15,
                                 right: 10,
                                 child: SwitchButton(),
+                              ),
+                            ],
+                          ),
+
+                          //currency
+                          const Padding(
+                            padding: EdgeInsets.only(top: 5),
+                          ),
+                          const Stack(
+                            children: [
+                              ProfileTile(
+                                profileIcons: Icons.euro_outlined,
+                                settingName: 'Валюта',
+                              ),
+                              Positioned(
+                                top: 25,
+                                right: 10,
+                                child: CurrencyButton(),
                               ),
                             ],
                           ),

@@ -1,31 +1,33 @@
 import 'package:flutter/material.dart';
 
-class DropDown extends StatefulWidget {
-  const DropDown({super.key});
+class CurrencyButton extends StatefulWidget {
+  const CurrencyButton({super.key});
 
   @override
-  State<DropDown> createState() => _DropDownState();
+  State<CurrencyButton> createState() => _CurrencyButtonState();
 }
 
-class _DropDownState extends State<DropDown> {
-  String? selectedLanguage;
-  final List<String> languages = [
-    'rus',
-    'eng',
+class _CurrencyButtonState extends State<CurrencyButton> {
+  String? selectedCurrency;
+  final List<String> currency = [
+    'BYN',
+    'USD',
+    'EUR',
   ];
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: 60,
       height: 30,
       child: DropdownButton<String>(
-        value: selectedLanguage,
+        value: selectedCurrency,
         onChanged: ((value) {
           setState(() {
-            selectedLanguage = value!;
+            selectedCurrency = value!;
           });
         }),
-        items: languages
+        items: currency
             .map((e) => DropdownMenuItem(
                   value: e,
                   child: Container(
@@ -41,7 +43,7 @@ class _DropDownState extends State<DropDown> {
                   ),
                 ))
             .toList(),
-        selectedItemBuilder: (BuildContext context) => languages
+        selectedItemBuilder: (BuildContext context) => currency
             .map((e) => Row(
                   children: [
                     Text(
@@ -52,7 +54,7 @@ class _DropDownState extends State<DropDown> {
                 ))
             .toList(),
         hint: Text(
-          languages.first,
+          currency.first,
           style: TextStyle(color: Colors.grey.shade600),
         ),
         dropdownColor: Colors.grey.shade100,

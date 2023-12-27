@@ -72,160 +72,167 @@ class _AddScreenState extends State<AddScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Column(
+        child: Stack(
           children: [
-            Expanded(
-              flex: 1,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15),
-                child: SizedBox(
-                  height: 60,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (BuildContext context) => const Navbar(),
-                            ),
-                          );
-                        },
-                        child: const Icon(
-                          Icons.arrow_back_outlined,
-                          size: 40,
-                        ),
-                      ),
-                      Row(
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 5),
+              child: ListView(
+                physics: const NeverScrollableScrollPhysics(),
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 15),
+                    child: SizedBox(
+                      height: 60,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            categoryType,
-                            style: const TextStyle(
-                              color: Colors.black,
-                              fontSize: 22,
-                              fontWeight: FontWeight.w600,
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (BuildContext context) =>
+                                      const Navbar(),
+                                ),
+                              );
+                            },
+                            child: const Icon(
+                              Icons.arrow_back_outlined,
+                              size: 40,
                             ),
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                categoryType,
+                                style: const TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    categoryType = categoryType == 'Расходы'
+                                        ? 'Доходы'
+                                        : 'Расходы';
+                                  });
+                                },
+                                child: const Icon(Icons.sync_outlined,
+                                    color: Colors.green, size: 40),
+                              ),
+                            ],
                           ),
                           GestureDetector(
                             onTap: () {
-                              setState(() {
-                                categoryType = categoryType == 'Расходы'
-                                    ? 'Доходы'
-                                    : 'Расходы';
-                              });
+                              if (tappedIndex == -1) {
+                                popUpMessage(
+                                    context: context,
+                                    message: "Выберите категорию!");
+                              } else if (input.isEmpty) {
+                                popUpMessage(
+                                    context: context,
+                                    message: "Введите сумму!");
+                              } else {
+                                var add = AddData(
+                                  categoryIcon[tappedIndex].codePoint,
+                                  '${categoryIcon[tappedIndex].fontFamily}',
+                                  categoryName[tappedIndex],
+                                  input,
+                                  categoryType,
+                                  date,
+                                );
+                                box.add(add);
+                                popUpMessage(context: context);
+                              }
                             },
-                            child: const Icon(Icons.sync_outlined,
-                                color: Colors.green, size: 40),
-                          ),
-                        ],
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          if (tappedIndex == -1) {
-                            popUpMessage(
-                                context: context,
-                                message: "Выберите категорию!");
-                          } else if (input.isEmpty) {
-                            popUpMessage(
-                                context: context, message: "Введите сумму!");
-                          } else {
-                            var add = AddData(
-                              categoryIcon[tappedIndex].codePoint,
-                              '${categoryIcon[tappedIndex].fontFamily}',
-                              categoryName[tappedIndex],
-                              input,
-                              categoryType,
-                              date,
-                            );
-                            box.add(add);
-                            popUpMessage(context: context);
-                          }
-                        },
-                        child: Container(
-                          height: 50,
-                          decoration: BoxDecoration(
-                              color: const Color.fromARGB(255, 14, 10, 218),
-                              borderRadius: BorderRadius.circular(15)),
-                          child: const Center(
-                            child: Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Text(
-                                'Сохранить',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 20,
+                            child: Container(
+                              height: 50,
+                              decoration: BoxDecoration(
+                                  color: const Color.fromARGB(255, 14, 10, 218),
+                                  borderRadius: BorderRadius.circular(15)),
+                              child: const Center(
+                                child: Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: Text(
+                                    'Сохранить',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 20,
+                                    ),
+                                  ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            Expanded(
-              flex: 3,
-              child: GridView.builder(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
-                ),
-                itemCount: categoryIcon.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        tappedIndex = index;
-                      });
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 10, vertical: 10),
-                      child: Container(
-                        width: double.maxFinite,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(17),
-                          color: index == tappedIndex
-                              ? const Color(0xffd3d0fb)
-                              : Colors.white10,
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              tappedIndex == index
-                                  ? categoryIcon[tappedIndex]
-                                  : categoryIcon[index],
-                              size: 30,
-                              color: const Color.fromARGB(255, 14, 10, 218),
-                            ),
-                            const Padding(
-                              padding: EdgeInsets.only(top: 5),
-                            ),
-                            Text(
-                              tappedIndex == index
-                                  ? categoryName[tappedIndex]
-                                  : categoryName[index],
-                              style: const TextStyle(
-                                fontSize: 16,
-                                color: Color.fromARGB(255, 14, 10, 218),
-                              ),
-                            ),
-                          ],
-                        ),
+                        ],
                       ),
                     ),
-                  );
-                },
-              ),
-            ),
-            Expanded(
-              flex: 4,
-              child: Column(
-                children: [
+                  ),
+
+                  //category tiles
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height / 3,
+                    width: MediaQuery.of(context).size.width,
+                    child: GridView.builder(
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 3,
+                      ),
+                      itemCount: categoryIcon.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              tappedIndex = index;
+                            });
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 10),
+                            child: Container(
+                              width: double.maxFinite,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(17),
+                                color: index == tappedIndex
+                                    ? const Color(0xffd3d0fb)
+                                    : Colors.white10,
+                              ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(
+                                    tappedIndex == index
+                                        ? categoryIcon[tappedIndex]
+                                        : categoryIcon[index],
+                                    size: 30,
+                                    color:
+                                        const Color.fromARGB(255, 14, 10, 218),
+                                  ),
+                                  const Padding(
+                                    padding: EdgeInsets.only(top: 5),
+                                  ),
+                                  Text(
+                                    tappedIndex == index
+                                        ? categoryName[tappedIndex]
+                                        : categoryName[index],
+                                    style: const TextStyle(
+                                      fontSize: 16,
+                                      color: Color.fromARGB(255, 14, 10, 218),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+
+                  //NumPad
                   Container(
                     width: double.maxFinite,
                     height: 60,
@@ -267,11 +274,11 @@ class _AddScreenState extends State<AddScreen> {
                         ],
                       ),
                     ),
-
-                    //NumPad
                   ),
-                  Expanded(
-                    flex: 5,
+
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height / 2,
+                    width: MediaQuery.of(context).size.width,
                     child: GridView.builder(
                       padding: const EdgeInsets.symmetric(
                         horizontal: 45,

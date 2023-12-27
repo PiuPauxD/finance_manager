@@ -83,64 +83,67 @@ class _HomeScreenState extends State<HomeScreen> {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(10),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          child: Stack(
             children: [
-              Expanded(
-                flex: 3,
-                child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-                  child: _card(),
-                ),
-              ),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 5),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                child: ListView(
+                  physics: const NeverScrollableScrollPhysics(),
                   children: [
-                    Text(
-                      'История транзакций',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.black,
-                      ),
+                    _card(),
+                    const Padding(
+                      padding: EdgeInsets.only(top: 25),
                     ),
-                    Text(
-                      'Показать все',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                        color: Color.fromARGB(255, 14, 10, 218),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
+                          'История транзакций',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.black,
+                          ),
+                        ),
+                        GestureDetector(
+                          onTap: () {},
+                          child: const Text(
+                            'Показать все',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                              color: Color.fromARGB(255, 14, 10, 218),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.only(top: 15),
+                    ),
+                    Container(
+                      height: MediaQuery.of(context).size.height / 3,
+                      width: double.maxFinite,
+                      decoration: BoxDecoration(
+                        color: Colors.white38,
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      child: ValueListenableBuilder(
+                        valueListenable: box.listenable(),
+                        builder: (context, value, child) {
+                          return ListView.builder(
+                            scrollDirection: Axis.vertical,
+                            itemCount: box.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              history = box.values.toList()[index];
+                              return getList(history, index);
+                            },
+                          );
+                        },
                       ),
                     ),
                   ],
-                ),
-              ),
-              Expanded(
-                flex: 3,
-                child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  height: 90,
-                  width: double.maxFinite,
-                  decoration: BoxDecoration(
-                    color: Colors.white38,
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  child: ValueListenableBuilder(
-                    valueListenable: box.listenable(),
-                    builder: (context, value, child) {
-                      return ListView.builder(
-                        scrollDirection: Axis.vertical,
-                        itemCount: box.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          history = box.values.toList()[index];
-                          return getList(history, index);
-                        },
-                      );
-                    },
-                  ),
                 ),
               ),
             ],
@@ -204,8 +207,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _card() {
     return Container(
-      width: 320,
-      height: 220,
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height / 3,
       decoration: BoxDecoration(
         color: const Color.fromARGB(255, 14, 10, 218),
         borderRadius: BorderRadius.circular(16),
@@ -242,7 +245,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 padding: EdgeInsets.symmetric(horizontal: 5),
               ),
               Text(
-                '${total().toStringAsFixed(2)}',
+                total().toStringAsFixed(2),
                 style: const TextStyle(
                   color: Colors.white,
                   fontSize: 24,
@@ -290,7 +293,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ],
                         ),
                         Text(
-                          '${income().toStringAsFixed(2)}',
+                          income().toStringAsFixed(2),
                           style: const TextStyle(
                             color: Colors.white,
                             fontSize: 20,
@@ -327,7 +330,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ],
                         ),
                         Text(
-                          '${expenses().toStringAsFixed(2)}',
+                          expenses().toStringAsFixed(2),
                           style: const TextStyle(
                             color: Colors.white,
                             fontSize: 20,
