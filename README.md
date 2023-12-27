@@ -1,16 +1,6 @@
 # finance_manager
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<img width="208" alt="image" src="https://github.com/PiuPauxD/finance_manager/assets/77558828/1608e25c-fece-4f27-b9e0-908ae413e4cc">
+<img width="203" alt="image" src="https://github.com/PiuPauxD/finance_manager/assets/77558828/8d85d956-c835-4915-bde3-dbf413cd1126">
+<img width="199" alt="image" src="https://github.com/PiuPauxD/finance_manager/assets/77558828/b93fe00f-1984-453f-8995-3e63361ca1cb">
+<img width="204" alt="image" src="https://github.com/PiuPauxD/finance_manager/assets/77558828/aab41ff9-ad52-48b9-ab7b-f8fcbb278dd0">
