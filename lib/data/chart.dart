@@ -40,7 +40,7 @@ class _ChartState extends State<Chart> {
         break;
       default:
     }
-    return Container(
+    return SizedBox(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height / 2.5,
       child: SfCartesianChart(
@@ -81,45 +81,3 @@ class SalesData {
   final String year;
   final double sales;
 }
-
-
-
-// child: SfCircularChart(
-      //   legend: Legend(
-      //     isVisible: true,
-      //     overflowMode: LegendItemOverflowMode.scroll,
-      //     textStyle: const TextStyle(color: Colors.black),
-      //   ),
-      //   tooltipBehavior: TooltipBehavior(enable: true),
-      //   series: <CircularSeries<SalesData, String>>[
-      //     DoughnutSeries<SalesData, String>(
-      //       dataSource: <SalesData>[
-      //         ...List.generate(time(a!, b ? true : false).length, (index) {
-      //           return SalesData(
-      //               j
-      //                   ? b
-      //                       ? a![index].datetime.hour.toStringAsFixed(2)
-      //                       : a![index].datetime.day.toStringAsFixed(2)
-      //                   : a![index].datetime.month.toStringAsFixed(2),
-      //               b
-      //                   ? index > 0
-      //                       ? time(a!, true)[index] + time(a!, true)[index - 1]
-      //                       : time(a!, true)[index]
-      //                   : index > 0
-      //                       ? time(a!, false)[index] +
-      //                           time(a!, false)[index - 1]
-      //                       : time(a!, false)[index]);
-      //         }),
-      //       ],
-      //       xValueMapper: (SalesData sales, _) => sales.year,
-      //       yValueMapper: (SalesData sales, _) => sales.sales,
-      //       dataLabelSettings: const DataLabelSettings(
-      //         isVisible: true,
-      //         textStyle: TextStyle(
-      //           color: Colors.black,
-      //           fontWeight: FontWeight.bold,
-      //         ),
-      //       ),
-      //     ),
-      //   ],
-      // ),

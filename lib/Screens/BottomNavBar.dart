@@ -30,6 +30,7 @@ class _NavbarState extends State<Navbar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(255, 53, 50, 50),
       body: screens[currentIndex],
       bottomNavigationBar: CircleNavBar(
         activeIndex: currentIndex,

@@ -39,17 +39,17 @@ class _HomeScreenState extends State<HomeScreen> {
           padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
           child: GestureDetector(
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (BuildContext context) => const ProfileScreen(),
-                ),
-              );
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(
+              //     builder: (BuildContext context) => const ProfileScreen(),
+              //   ),
+              // );
             },
             child: ClipRRect(
               borderRadius: BorderRadius.circular(16),
               child: Image.asset(
-                'img/profile1.jpg',
+                'img/picha.png',
                 fit: BoxFit.cover,
               ),
             ),
